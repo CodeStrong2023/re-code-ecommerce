@@ -29,12 +29,12 @@ const RegisterForm = () => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-        
       });
-      console.log(JSON.stringify(formData))
+
       if (!response.ok) {
-        const errorData = await response.json(); // Intentamos obtener detalles del error
-        throw new Error(errorData.message || 'Error submitting form data');
+          const errorMessage = await response.text();
+          alert(errorMessage); // Mostrar el mensaje de error en un alert
+          throw new Error('Login failed');
       }
 
       const contentType = response.headers.get('content-type');
@@ -46,11 +46,11 @@ const RegisterForm = () => {
         data = await response.text();
       }
 
-      console.log('Form data submitted successfully:', data);
-      // Aquí puedes agregar lógica para mostrar un mensaje de éxito o redirigir al usuario
+      console.log('Login successful:', data);
+      // Aquí puedes almacenar el token o los detalles del usuario según sea necesario
     } catch (error) {
-      console.error('Error submitting form data:', error);
-      // Maneja el error (por ejemplo, mostrar un mensaje de error)
+      console.error('Login failed:', error.message);
+      // Manejar el error (por ejemplo, mostrar un mensaje de error)
     }
   };
 

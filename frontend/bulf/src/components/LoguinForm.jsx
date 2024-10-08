@@ -5,7 +5,7 @@ import { getApiUrl } from '../config';
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -21,7 +21,7 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-        const loguinUrl = getApiUrl('/login')
+        const loguinUrl = getApiUrl('/auth/login')
         const response = await fetch(loguinUrl, {
             method: 'POST',
             headers: {
@@ -58,11 +58,11 @@ const LoginForm = () => {
         <form className="register-form" onSubmit={handleSubmit}> {/* Use the same class here */}
           <h2>Login</h2>
           <div className="form-group">
-            <label htmlFor="username">Username:</label>
+            <label htmlFor="username">Email:</label>
             <input
               type="text"
-              id="username-loguin"
-              name="username"
+              id="email-loguin"
+              name="email"
               value={formData.username}
               onChange={handleChange}
               required

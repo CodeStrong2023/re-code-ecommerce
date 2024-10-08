@@ -5,15 +5,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name = "gender")
+public class Gender {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_role")
-    private Long idRole;
+    private Long id;
+
+    @Column(nullable = false, unique = true)
     private String name;
+
+    @OneToMany(mappedBy = "gender")
+    private List<Category> categories; // Relación inversa, opcional
 }

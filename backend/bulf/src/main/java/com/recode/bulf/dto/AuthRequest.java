@@ -1,4 +1,4 @@
-package com.recode.bulf.controller;
+package com.recode.bulf.dto;
 
 public record AuthRequest(
         String email,
