@@ -1,6 +1,7 @@
 package com.recode.bulf.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -31,4 +32,10 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Subcategory> subcategories;
+
+    // Constructor para permitir deserialización solo con el ID
+    @JsonCreator
+    public Category(Long id) {
+        this.id = id;
+    }
 }

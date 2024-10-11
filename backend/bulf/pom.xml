@@ -11,8 +11,6 @@
 	<groupId>com.recode</groupId>
 	<artifactId>bulf</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bulf</name>
-	<description>this project is a backend ecommerce</description>
 	<url/>
 	<licenses>
 		<license/>

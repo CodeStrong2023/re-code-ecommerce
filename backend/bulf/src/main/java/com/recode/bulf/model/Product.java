@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -19,21 +19,18 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "gender_id", nullable = false)
-    private Gender gender; // Relación con Gender
+    @Column(name = "gender_id", nullable = false)
+    private long genderId;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id", nullable = false)
-    private Category category; // Relación con Category
 
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id", nullable = false)
-    private Subcategory subCategory; // Relación con Subcategory
+    @Column(name = "category_id", nullable = false)
+    private long categoryId;
 
+    @Column(name = "subcategory_id")
+    private long subcategoryId;
     @Column
     private String mainImage;
 
@@ -50,6 +47,6 @@ public class Product {
     private float stock;
 
     @Column
-    private Date date;
+    private LocalDateTime date;
 
 }

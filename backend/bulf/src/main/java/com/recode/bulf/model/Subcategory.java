@@ -23,5 +23,5 @@ public class Subcategory {
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     @JsonBackReference
-    private Category category; // Relación con Category
+    private Category category;
 }
