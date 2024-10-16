@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import './formproducto.css'; // Importa los estilos
 
@@ -8,16 +7,15 @@ const ProductForm = () => {
   const [subcategories, setSubcategories] = useState([]);
   const [selectedGender, setSelectedGender] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedSubcategory, setSelectedSubcategory] = useState(''); // Agregar estado para subcategoría
+  const [selectedSubcategory, setSelectedSubcategory] = useState('');
 
   const [name, setName] = useState('');
   const [mainImage, setMainImage] = useState('');
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState(['']); // Array para almacenar URLs de imágenes
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
 
-  // Fetch para obtener los géneros (y categorías asociadas)
   useEffect(() => {
     const fetchGenders = async () => {
       try {
@@ -31,37 +29,42 @@ const ProductForm = () => {
     fetchGenders();
   }, []);
 
-  // Manejar cambio de género seleccionado
   const handleGenderChange = (e) => {
     const genderId = e.target.value;
     setSelectedGender(genderId);
 
-    // Encuentra las categorías asociadas con el género seleccionado
     const selectedGenderObj = genders.find(gender => gender.id === parseInt(genderId));
     if (selectedGenderObj) {
       setCategories(selectedGenderObj.categories || []);
-      setSubcategories([]); // Resetear subcategorías al cambiar de categoría
+      setSubcategories([]); // Resetear subcategorías al cambiar de género
       setSelectedCategory(''); // Resetear categoría
       setSelectedSubcategory(''); // Resetear subcategoría
     }
   };
 
-  // Manejar cambio de categoría seleccionada
   const handleCategoryChange = (e) => {
     const categoryId = e.target.value;
     setSelectedCategory(categoryId);
 
-    // Encuentra las subcategorías asociadas con la categoría seleccionada
     const selectedCategoryObj = categories.find(category => category.id === parseInt(categoryId));
     if (selectedCategoryObj) {
       setSubcategories(selectedCategoryObj.subcategories || []);
-      setSelectedSubcategory(''); // Resetear subcategoría
+      setSelectedSubcategory('');
     }
   };
 
-  // Manejar cambio de subcategoría seleccionada
   const handleSubcategoryChange = (e) => {
     setSelectedSubcategory(e.target.value);
+  };
+
+  const handleImageChange = (index, value) => {
+    const newImages = [...images];
+    newImages[index] = value;
+    setImages(newImages);
+  };
+
+  const handleAddImage = () => {
+    setImages([...images, '']); // Agrega un nuevo campo vacío
   };
 
   const handleSubmit = async (e) => {
@@ -73,7 +76,7 @@ const ProductForm = () => {
       categoryId: selectedCategory,
       subcategoryId: selectedSubcategory,
       mainImage,
-      images,
+      images: images.filter(url => url), // Filtra las URLs vacías
       description,
       price,
       stock,
@@ -91,6 +94,15 @@ const ProductForm = () => {
       if (response.ok) {
         alert('Producto creado exitosamente');
         // Resetea el formulario si es necesario
+        setName('');
+        setMainImage('');
+        setImages(['']); // Resetea el array de imágenes
+        setDescription('');
+        setPrice(0);
+        setStock(0);
+        setSelectedGender('');
+        setSelectedCategory('');
+        setSelectedSubcategory('');
       } else {
         alert('Error al crear el producto');
       }
@@ -98,10 +110,6 @@ const ProductForm = () => {
       console.error('Error en la solicitud:', error);
       alert('Error en la solicitud');
     }
-  };
-
-  const handleImageChange = (e) => {
-    setImages([...e.target.files].map(file => URL.createObjectURL(file)));
   };
 
   return (
@@ -157,7 +165,7 @@ const ProductForm = () => {
         <select
           id="subcategory"
           value={selectedSubcategory}
-          onChange={handleSubcategoryChange} // Agregar cambio de subcategoría
+          onChange={handleSubcategoryChange}
           required
           disabled={!subcategories.length} // Desactivar si no hay subcategorías
         >
@@ -182,13 +190,20 @@ const ProductForm = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="images">Imágenes adicionales:</label>
-        <input
-          type="file"
-          id="images"
-          multiple
-          onChange={handleImageChange}
-        />
+        <label>Imágenes adicionales:</label>
+        {images.map((image, index) => (
+          <div key={index} className="image-input-group">
+            <input
+              type="text"
+              value={image}
+              onChange={(e) => handleImageChange(index, e.target.value)}
+              placeholder="URL de la imagen"
+            />
+          </div>
+        ))}
+        <button type="button" onClick={handleAddImage} className="add-image-btn">
+          Agregar otra imagen
+        </button>
       </div>
 
       <div className="form-group">
