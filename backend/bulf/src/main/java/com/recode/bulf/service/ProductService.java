@@ -22,9 +22,19 @@ public class ProductService {
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
-    public Page<ProductCard> getPagedProducts(int page) {
-        Pageable pageable = PageRequest.of(page, 20, Sort.by("date").descending());
-        return productRepository.findAllReducedProducts(pageable);
+    private Pageable createPageRequest(int page) {
+        return PageRequest.of(page, 20, Sort.by("date").descending());
     }
 
+    public Page<ProductCard> getPagedProducts(int page) {
+        return productRepository.findAllReducedProducts(createPageRequest(page));
+    }
+
+    public Page<ProductCard> getPagedProductsByGender(int page, Long genderId) {
+        return productRepository.findReducedProductsByGender(genderId, createPageRequest(page));
+    }
+
+    public Page<ProductCard> getPagedProductsByCategory(int page, Long categoryId) {
+        return productRepository.findReducedProductsByCategory(categoryId, createPageRequest(page));
+    }
 }

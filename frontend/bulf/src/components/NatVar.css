@@ -81,3 +81,17 @@
   .dropdown li:hover {
     background-color: #60265e; /* Color al pasar el mouse sobre una categoría */
   }
+
+  .home-button {
+    margin-left: 20px; /* Espacio entre el logo y el botón */
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de mano al pasar */
+  }
+  
+  .home-button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }

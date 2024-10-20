@@ -45,4 +45,12 @@
   .submit-btn:hover {
     background-color: #45a049;
   }
+
+  .image-input-group {
+    margin-bottom: 10px; 
+  }
+  
+  .add-image-btn {
+    margin-top: 10px; 
+  }
   

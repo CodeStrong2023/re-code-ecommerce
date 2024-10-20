@@ -10,7 +10,7 @@ const ProductCard = ({ product }) => {
 
   const handleClick = async () => {
     try {
-      navigate(`/product/${product.id}`);
+      navigate(`/item/${product.id}`);
     } catch (error) {
       console.error('Error en la redirección:', error);
     }
