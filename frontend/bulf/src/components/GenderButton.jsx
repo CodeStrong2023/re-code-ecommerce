@@ -6,18 +6,18 @@ import CategoryButton from './CategoryButton';
 
 const GenderButton = ({ gender }) => {
   const { handleGenderSelect } = useContext(ProductFilterContext);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false); // Para controlar la visibilidad del menú
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsDropdownVisible(true); // Muestra el menú al pasar el mouse
+    setIsDropdownVisible(true);
   };
 
   const handleMouseLeave = () => {
-    setIsDropdownVisible(false); // Oculta el menú al salir
+    setIsDropdownVisible(false);
   };
 
   const handleClick = () => {
-    handleGenderSelect(gender.id); // Selecciona el género y deselecciona la categoría
+    handleGenderSelect(gender.id);
   };
 
   return (
@@ -26,9 +26,9 @@ const GenderButton = ({ gender }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-        <div onClick={handleClick}>
-            {gender.name}
-        </div>
+      <div onClick={handleClick}>
+        {gender.name}
+      </div>
       {isDropdownVisible && (
         <div className="dropdown">
           {gender.categories && gender.categories.length > 0 ? (

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import './ProductView.css';
 
 const ProductView = () => {
-  const { id } = useParams(); // Obtiene el ID del producto de la URL
+  const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -24,12 +24,10 @@ const ProductView = () => {
   }, [id]);
 
   const handleBuyNow = () => {
-    // Lógica para la compra inmediata
     console.log('Comprar ahora', product);
   };
 
   const handleAddToCart = () => {
-    // Lógica para agregar al carrito
     console.log('Agregar al carrito', product);
   };
 

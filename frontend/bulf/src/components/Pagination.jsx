@@ -1,6 +1,6 @@
 import 'react';
 import PropTypes from 'prop-types';
-import './Pagination.css'; // Importa el archivo CSS
+import './Pagination.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
@@ -37,8 +37,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 };
 
 Pagination.propTypes = {
-    currentPage: PropTypes.number.isRequired,
-    totalPages: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-  };
+  currentPage: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired,
+};
 export default Pagination;

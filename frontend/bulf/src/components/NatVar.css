@@ -1,97 +1,134 @@
 .natvar {
-    border: 1px solid #0c040a;
-    padding: 16px;
-    margin: 16px 0;
-    background: linear-gradient(to right, #371247, #1d3f5b); /* Violeta y azul */
-    color: rgb(0, 0, 0);
-  }
-  
-  .natvar-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .logo {
-    width: 50px; /* Ajusta el tamaño según sea necesario */
-    height: auto;
-  }
-  
-  .store-name {
-    font-weight: bold;
-    font-size: 34px;
-  }
-  
-  .categories-list {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .categories-list li {
-    margin: 8px 0;
-  }
+  border: 1px solid #0c040a;
+  padding: 16px;
+  margin: 16px 0;
+  background: linear-gradient(to right, #371247, #1d3f5b);
+  color: rgb(0, 0, 0);
+}
+
+.natvar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+.store-name {
+  font-weight: bold;
+  font-size: 34px;
+}
+
+.categories-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.categories-list li {
+  margin: 8px 0;
+}
 
 
 
 
-  .genders-container {
-    display: flex;
-    justify-content: center; /* Centra los botones en la línea */
-    margin-bottom: 20px; /* Espacio entre el header y el dropdown */
-  }
-  
-  .gender-button {
-    position: relative; /* Necesario para posicionar el dropdown */
-    padding: 10px 15px;
-    margin: 0 10px;
-    background-color: #2d69a8; /* Color de fondo del botón */
-    color: rgb(0, 0, 0); /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    transition: background-color 0.3s; /* Efecto de transición */
-  }
-  
-  .gender-button:hover {
-    background-color: #0056b3; /* Color al pasar el mouse */
-  }
-  
-  .dropdown {
-    position: absolute; /* Posicionamiento absoluto respecto al botón */
-    top: 100%; /* Mueve el dropdown hacia abajo del botón */
-    left: 0;
-    background-color: rgb(23, 27, 60); /* Color de fondo del dropdown */
-    border: 1px solid #000000; /* Borde del dropdown */
-    border-radius: 5px; /* Bordes redondeados */
-    z-index: 1; /* Asegura que el dropdown esté encima de otros elementos */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para el dropdown */
-  }
-  
-  .dropdown ul {
-    list-style-type: none; /* Quita el estilo de lista */
-    margin: 0; /* Quita el margen */
-    padding: 0; /* Quita el padding */
-  }
-  
-  .dropdown li {
-    padding: 8px 12px; /* Espacio dentro de cada categoría */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-  }
-  
-  .dropdown li:hover {
-    background-color: #60265e; /* Color al pasar el mouse sobre una categoría */
-  }
+.genders-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
-  .home-button {
-    margin-left: 20px; /* Espacio entre el logo y el botón */
-    padding: 10px 15px; /* Espaciado interno */
-    background-color: #007bff; /* Color de fondo */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor de mano al pasar */
-  }
-  
-  .home-button:hover {
-    background-color: #0056b3; /* Color de fondo al pasar el mouse */
-  }
+.gender-button {
+  position: relative;
+  padding: 10px 15px;
+  margin: 0 10px;
+  background-color: #2d69a8;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.gender-button:hover {
+  background-color: #0056b3;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(23, 27, 60);
+  border: 1px solid #000000;
+  border-radius: 5px;
+  z-index: 1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown li {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #60265e;
+}
+
+.home-button {
+  margin-left: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.home-button {
+  margin-right: 10px;
+}

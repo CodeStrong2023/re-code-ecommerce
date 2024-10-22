@@ -9,8 +9,8 @@ export const ProductFilterProvider = ({ children }) => {
 
   const handleGenderSelect = (genderId) => {
     setSelectedGenderId(genderId);
-    setSelectedCategoryId(null); 
-    console.log(`Género seleccionado: ${genderId}`); 
+    setSelectedCategoryId(null);
+    console.log(`Género seleccionado: ${genderId}`);
   };
 
   const handleCategorySelect = (categoryId) => {

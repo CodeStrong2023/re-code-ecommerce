@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import './RegisterForm.css';
-import { getApiUrl } from '../config'; // Asegúrate de que esta función esté bien configurada
+import './Sing.css';
+import { getApiUrl } from '../config';
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      const registerUrl = getApiUrl('/auth/register'); // Asegúrate de que esta URL sea correcta
+      const registerUrl = getApiUrl('/auth/register');
 
       const response = await fetch(registerUrl, {
         method: 'POST',
@@ -32,9 +32,9 @@ const RegisterForm = () => {
       });
 
       if (!response.ok) {
-          const errorMessage = await response.text();
-          alert(errorMessage); // Mostrar el mensaje de error en un alert
-          throw new Error('Login failed');
+        const errorMessage = await response.text();
+        alert(errorMessage);
+        throw new Error('Login failed');
       }
 
       const contentType = response.headers.get('content-type');
@@ -47,16 +47,14 @@ const RegisterForm = () => {
       }
 
       console.log('Login successful:', data);
-      // Aquí puedes almacenar el token o los detalles del usuario según sea necesario
     } catch (error) {
       console.error('Login failed:', error.message);
-      // Manejar el error (por ejemplo, mostrar un mensaje de error)
     }
   };
 
   return (
     <form className="register-form" onSubmit={handleSubmit}>
-      <h2>Register</h2>
+      <h2>Singup</h2>
       <div className="form-group">
         <label htmlFor="username">Username:</label>
         <input
@@ -90,7 +88,7 @@ const RegisterForm = () => {
           required
         />
       </div>
-      <button type="submit">Register</button>
+      <button type="submit">Send</button>
     </form>
   );
 };

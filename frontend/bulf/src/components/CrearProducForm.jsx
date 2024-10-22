@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './formproducto.css'; // Importa los estilos
+import './formproducto.css';
 
 const ProductForm = () => {
   const [genders, setGenders] = useState([]);
@@ -11,7 +11,7 @@ const ProductForm = () => {
 
   const [name, setName] = useState('');
   const [mainImage, setMainImage] = useState('');
-  const [images, setImages] = useState(['']); // Array para almacenar URLs de imágenes
+  const [images, setImages] = useState(['']);
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
@@ -36,9 +36,9 @@ const ProductForm = () => {
     const selectedGenderObj = genders.find(gender => gender.id === parseInt(genderId));
     if (selectedGenderObj) {
       setCategories(selectedGenderObj.categories || []);
-      setSubcategories([]); // Resetear subcategorías al cambiar de género
-      setSelectedCategory(''); // Resetear categoría
-      setSelectedSubcategory(''); // Resetear subcategoría
+      setSubcategories([]);
+      setSelectedCategory('');
+      setSelectedSubcategory('');
     }
   };
 
@@ -64,7 +64,7 @@ const ProductForm = () => {
   };
 
   const handleAddImage = () => {
-    setImages([...images, '']); // Agrega un nuevo campo vacío
+    setImages([...images, '']);
   };
 
   const handleSubmit = async (e) => {
@@ -76,7 +76,7 @@ const ProductForm = () => {
       categoryId: selectedCategory,
       subcategoryId: selectedSubcategory,
       mainImage,
-      images: images.filter(url => url), // Filtra las URLs vacías
+      images: images.filter(url => url),
       description,
       price,
       stock,
@@ -93,10 +93,9 @@ const ProductForm = () => {
 
       if (response.ok) {
         alert('Producto creado exitosamente');
-        // Resetea el formulario si es necesario
         setName('');
         setMainImage('');
-        setImages(['']); // Resetea el array de imágenes
+        setImages(['']);
         setDescription('');
         setPrice(0);
         setStock(0);
@@ -149,7 +148,7 @@ const ProductForm = () => {
           value={selectedCategory}
           onChange={handleCategoryChange}
           required
-          disabled={!categories.length} // Desactivar si no hay categorías
+          disabled={!categories.length}
         >
           <option value="">Selecciona una categoría</option>
           {categories.map((category) => (
@@ -167,7 +166,7 @@ const ProductForm = () => {
           value={selectedSubcategory}
           onChange={handleSubcategoryChange}
           required
-          disabled={!subcategories.length} // Desactivar si no hay subcategorías
+          disabled={!subcategories.length}
         >
           <option value="">Selecciona una subcategoría</option>
           {subcategories.map((subcategory) => (

@@ -1,10 +1,10 @@
 import 'react';
 import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import { useNavigate } from 'react-router-dom';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
-  const navigate = useNavigate(); // Inicializa useNavigate
+  const navigate = useNavigate();
 
   if (!product) return null;
 

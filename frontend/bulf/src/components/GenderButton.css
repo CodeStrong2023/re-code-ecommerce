@@ -1,30 +1,28 @@
-/* GenderButton.css */
 .gender-button {
-    position: relative; /* Necesario para posicionar el menú desplegable */
-    cursor: pointer;
-  }
-  
-  .dropdown {
-    position: absolute; /* Coloca el menú desplegable en relación al botón */
-    top: 100%; /* Alinea el menú debajo del botón */
-    left: 0;
-    background-color: white; /* O el color que prefieras */
-    border: 1px solid #ccc; /* Bordes opcionales */
-    z-index: 1000; /* Asegúrate de que el menú esté por encima de otros elementos */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombras opcionales */
-  }
-  
-  .dropdown ul {
-    list-style-type: none; /* Elimina los puntos de la lista */
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown li {
-    padding: 10px; /* Espaciado entre elementos */
-  }
-  
-  .dropdown li:hover {
-    background-color: #f0f0f0; /* Color de fondo al pasar el mouse */
-  }
-  
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown li {
+  padding: 10px;
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0;
+}
