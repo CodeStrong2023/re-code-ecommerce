@@ -1,0 +1,32 @@
+.admin-panel {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.admin-title {
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.admin-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-button:hover {
+    background-color: #45a049;
+}

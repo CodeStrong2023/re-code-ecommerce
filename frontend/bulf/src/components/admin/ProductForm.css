@@ -1,12 +1,18 @@
 .product-form {
   display: flex;
-  flex-direction: column;
-  max-width: 600px;
+  flex-wrap: wrap;
+  max-width: 1200px;
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #f9f9f9;
+  gap: 20px;
+}
+
+.column {
+  flex: 1 1 45%;
+  min-width: 250px;
 }
 
 .form-group {
@@ -52,4 +58,15 @@ textarea {
 
 .add-image-btn {
   margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+
+  .product-form {
+    flex-direction: column;
+  }
+
+  .column {
+    flex-basis: 100%;
+  }
 }

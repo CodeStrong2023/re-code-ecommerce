@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import './GenderButton.css';
-import { ProductFilterContext } from './ProductFilterContext';
+import { ProductFilterContext } from '../product/ProductFilterContext';
 import CategoryButton from './CategoryButton';
 
 const GenderButton = ({ gender }) => {

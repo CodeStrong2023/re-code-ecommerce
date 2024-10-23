@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import ProductCard from './ProductCard';
 import Pagination from './Pagination';
 import './ProductsList.css';
-import { getApiUrl } from '../config';
+import { getApiUrl } from '../../config';
 import { ProductFilterContext } from './ProductFilterContext';
 
 const ProductsList = () => {

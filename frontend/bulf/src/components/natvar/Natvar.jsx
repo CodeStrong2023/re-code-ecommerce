@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import GenderButton from './GenderButton';
 import './NatVar.css';
-import logo from '../images/logo-removebg-preview.png';
-import { ProductFilterContext } from './ProductFilterContext';
+import logo from '../../images/logo-removebg-preview.png';
+import { ProductFilterContext } from '../product/ProductFilterContext';
 import { useNavigate } from 'react-router-dom';
-import LoginForm from './SingIn';
+import LoginForm from '../auth/SingIn';
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
