@@ -1,25 +1,28 @@
 .natvar {
-  border: 1px solid #0c040a;
-  padding: 16px;
-  margin: 16px 0;
-  background: linear-gradient(to right, #371247, #1d3f5b);
-  color: rgb(0, 0, 0);
+  padding: 5px;
+  margin: 0px;
+  background: radial-gradient(circle at top left, #ffffff, #8740ba, #537fab);
+  color: #333;
+  font-family: 'Roboto', sans-serif;
 }
 
 .natvar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0px;
 }
 
 .logo {
-  width: 50px;
-  height: auto;
+  padding: 0px 10px 0px 10px;
+  width: 180px;
+  height: 80px;
 }
 
 .store-name {
   font-weight: bold;
-  font-size: 34px;
+  font-size: 36px;
+  color: #60265e;
 }
 
 .categories-list {
@@ -29,39 +32,43 @@
 
 .categories-list li {
   margin: 8px 0;
+  font-size: 18px;
 }
 
 .genders-container {
   display: flex;
   justify-content: center;
+  width: 50%;
   margin-bottom: 20px;
 }
-
+.cien {
+width: 100%;
+}
 .gender-button {
+  width: 100%;
+  padding: 12px;
+  margin: 0px;
   position: relative;
-  padding: 10px 15px;
-  margin: 0 10px;
-  background-color: #2d69a8;
-  color: rgb(0, 0, 0);
+  background-color: #8239a6;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.gender-button:hover {
-  background-color: #0056b3;
-}
+
 
 .dropdown {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: rgb(23, 27, 60);
+  background-color: #375189;
   border: 1px solid #000000;
   border-radius: 5px;
   z-index: 1;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown ul {
@@ -71,26 +78,32 @@
 }
 
 .dropdown li {
-  padding: 8px 12px;
+  padding: 10px 15px;
+  color: #be7a7a;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .dropdown li:hover {
-  background-color: #60265e;
+  background-color: #d88ad5;
 }
 
 .home-button {
-  margin-left: 20px;
-  padding: 10px 15px;
+  padding: 12px;
+  margin: 10px;
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
+  width: 12%;
   cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .home-button:hover {
   background-color: #0056b3;
+  transform: scale(1.05);
 }
 
 .modal {
@@ -99,9 +112,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: white;
+  background: radial-gradient(circle at top left, #8740ba, #ffffff, #537fab);
   border-radius: 16px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
   z-index: 1000;
 }
 
@@ -114,20 +127,26 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
-
 .close-modal {
-  margin-bottom: 15px;
-  float: right;
-  border: rgb(0, 0, 0);
-  font-size: 18px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #c91414;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 16px;
   cursor: pointer;
-  background: rgb(201, 20, 20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
 }
 
 .close-modal:hover {
   background-color: #6a0f0a;
 }
 
-.home-button {
-  margin-right: 10px;
-}
+

@@ -1,6 +1,4 @@
 .product-view {
-  display: flex;
-  flex-direction: column;
   padding: 20px;
 }
 
@@ -10,26 +8,28 @@
 }
 
 .image-section {
-  flex: 1;
-  display: flex;
+  margin: 40px;
+  flex: 2;
   flex-direction: column;
   align-items: center;
 }
 
 .main-image {
-  width: 300px;
-  height: auto;
+  width: auto;
+  height: 450px;
   margin-bottom: 20px;
   border: 2px solid #ccc;
 }
 
 .thumbnail-carousel {
+  margin: 0px 200px;
   display: flex;
   gap: 10px;
   overflow-x: auto;
 }
 
 .thumbnail {
+  flex:content;
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -46,20 +46,27 @@
 }
 
 .details-section {
-  flex: 2;
-  display: flex;
+  margin: 40px;
+  flex: 1;
   flex-direction: column;
+  text-align: start; 
+  color: black;
+ 
 }
 
 .product-name {
   font-size: 24px;
+  justify-self: start;
   margin-bottom: 10px;
+  color: black;
+
 }
 
 .price-section {
-  display: flex;
-  align-items: baseline;
+  
+  margin: 15px;
   gap: 10px;
+  
 }
 
 .current-price {
@@ -78,7 +85,7 @@
 }
 
 .additional-details {
-  margin: 20px 0;
+  margin: 20px;
 }
 
 .shipping-info, .delivery-info, .security-info {
@@ -86,26 +93,40 @@
   margin-bottom: 5px;
 }
 
+
 .buttons-section {
   display: flex;
-  gap: 10px;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  align-items: flex-end; /* Alinea los botones al fondo del contenedor */
+  gap: 10px; /* Añade un espacio entre los botones */
+  margin-top:   0px;
 }
 
 .buy-button, .add-to-cart-button {
-  padding: 15px 20px;
-  font-size: 16px;
+  background-color: #e53935;
+  color: white;
+  width: auto; /* Para ajustar el ancho automático */
+  padding: 10px 20px; /* Añade algo de padding para que se vean mejor */
   border: none;
+  border-radius: 5px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .buy-button {
-  background-color: #e53935;
-  color: white;
+  background-color: #e53935; /* Botón rojo */
+}
+
+.buy-button:hover {
+  background-color: #c62828; /* Color al hacer hover */
 }
 
 .add-to-cart-button {
-  background-color: #fbc02d;
-  color: white;
+  background-color: #fbc02d; /* Botón amarillo */
+}
+
+.add-to-cart-button:hover {
+  background-color: #f9a825; /* Color al hacer hover */
 }
 
 .description-section {

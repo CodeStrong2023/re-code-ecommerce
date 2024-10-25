@@ -5,8 +5,22 @@ import './ProductView.css';
 const ProductView = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [activeImage, setActiveImage] = useState(''); // Imagen que se muestra en grande
+  const [genders, setGenders] = useState([]);
+  const [activeImage, setActiveImage] = useState('');
+  const [deliveryDate, setDeliveryDate] = useState('');
 
+  useEffect(() => {
+    const calculateDeliveryDate = () => {
+      const today = new Date();
+      const oneWeekLater = new Date(today);
+      oneWeekLater.setDate(today.getDate() + 7);
+      const options = { day: 'numeric', month: 'short' };
+      const formattedDate = oneWeekLater.toLocaleDateString('es-ES', options).toUpperCase();
+      setDeliveryDate(formattedDate);
+    };
+
+    calculateDeliveryDate();
+  }, []);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -16,7 +30,7 @@ const ProductView = () => {
         }
         const productData = await response.json();
         setProduct(productData);
-        setActiveImage(productData.mainImage); // La primera imagen que se muestra será la principal
+        setActiveImage(productData.mainImage);
       } catch (error) {
         console.error('Error en la petición:', error);
       }
@@ -25,83 +39,108 @@ const ProductView = () => {
     fetchProduct();
   }, [id]);
 
-  const handleBuyNow = () => {
-    console.log('Comprar ahora', product);
+  // Fetch de géneros, categorías y subcategorías
+  useEffect(() => {
+    const fetchGenders = async () => {
+      try {
+        const response = await fetch('http://localhost:8080/api/genders');
+        const data = await response.json();
+        setGenders(data);
+      } catch (error) {
+        console.error('Error al obtener los géneros:', error);
+      }
+    };
+
+    fetchGenders();
+  }, []);
+
+  // Mapeo para obtener los nombres de género, categoría y subcategoría
+  const getCategoryAndSubcategory = (genderId, categoryId, subcategoryId) => {
+    const gender = genders.find((g) => g.id === genderId);
+    if (!gender) return { genderName: 'N/A', categoryName: 'N/A', subcategoryName: 'N/A' };
+
+    const category = gender.categories.find((c) => c.id === categoryId);
+    if (!category) return { genderName: gender.name, categoryName: 'N/A', subcategoryName: 'N/A' };
+
+    const subcategory = category.subcategories.find((s) => s.id === subcategoryId);
+    return {
+      genderName: gender.name,
+      categoryName: category.name,
+      subcategoryName: subcategory ? subcategory.name : 'N/A'
+    };
   };
 
-  const handleAddToCart = () => {
-    console.log('Agregar al carrito', product);
-  };
+  if (!product || genders.length === 0) return <div>Cargando...</div>;
 
-  const handleImageClick = (img) => {
-    setActiveImage(img); // Actualiza la imagen activa cuando se hace clic en una miniatura
-  };
-
-  if (!product) return <div>Cargando...</div>;
+  // Obtener los nombres de género, categoría y subcategoría
+  const { genderName, categoryName, subcategoryName } = getCategoryAndSubcategory(
+    product.genderId,
+    product.categoryId,
+    product.subcategoryId
+  );
 
   return (
+
     <div className="product-view">
-      {/* Contenedor principal */}
+
       <div className="product-container">
-        {/* Sección de imágenes con carrusel */}
         <div className="image-section">
-          {/* Imagen principal que se muestra en grande */}
           <img src={activeImage} alt={product.name} className="main-image" />
 
-          {/* Carrusel de miniaturas */}
           <div className="thumbnail-carousel">
-            {/* La imagen principal es la primera en el carrusel */}
             <img
               src={product.mainImage}
               alt={product.name}
               className={`thumbnail ${activeImage === product.mainImage ? 'active' : ''}`}
-              onClick={() => handleImageClick(product.mainImage)}
+              onClick={() => setActiveImage(product.mainImage)}
             />
-            {/* Luego vienen las demás imágenes */}
             {product.images.map((img, index) => (
               <img
                 key={index}
                 src={img}
                 alt={`Imagen ${index + 1}`}
                 className={`thumbnail ${activeImage === img ? 'active' : ''}`}
-                onClick={() => handleImageClick(img)}
+                onClick={() => setActiveImage(img)}
               />
             ))}
           </div>
         </div>
-
-        {/* Sección de detalles del producto */}
         <div className="details-section">
           <h2 className="product-name">{product.name}</h2>
-          {/* Descripción */}
           <div className="description-section">
-            <h3>Details</h3>
+            <p><b>Details:</b></p>
+            <br />
             <p>{product.description}</p>
           </div>
-
-
           <div className="price-section">
-            <span className="current-price">ARS{product.price.toFixed(2)}</span>
-            <span className="old-price">ARS22,170.83</span>
-            <span className="discount">-39% dto.</span>
+            <span className="current-price">Price: {product.price.toFixed(2)} $</span>
+
           </div>
 
-          {/* Detalles adicionales */}
+          <div className="publish-date-section">
+            <p><strong>Fecha de publicación:</strong> {new Date(product.date).toLocaleDateString()}</p>
+          </div>
+          <div className="category-section">
+            <br />
+            <p><strong>Gender:</strong> {genderName}</p>
+            <p><strong>Category:</strong> {categoryName}</p>
+            <p><strong>Sub-category:</strong> {subcategoryName}</p>
+            <br />
+          </div>
+
           <div className="additional-details">
-            <p className="shipping-info">Envío: ARS9,938.09</p>
-            <p className="delivery-info">Entrega: 22 de DIC.</p>
+            <p className="shipping-info">Envío: ARS 9,938.09</p>
+            <p className="delivery-info">Entrega estimada: {deliveryDate}</p>
             <p className="security-info">Seguridad y Privacidad: Pagos seguros, sin compartir datos con terceros.</p>
           </div>
+          <p><strong>Stock:</strong> {product.stock}</p>
 
-          {/* Botones de compra */}
           <div className="buttons-section">
-            <button onClick={handleBuyNow} className="buy-button">Comprar Ahora</button>
-            <button onClick={handleAddToCart} className="add-to-cart-button">Agregar al Carrito</button>
+            <button className="buy-button">Comprar Ahora</button>
+            <button className="add-to-cart-button">Agregar al Carrito</button>
           </div>
         </div>
       </div>
-
-
     </div>
   );
 };

@@ -22,5 +22,5 @@ public class Gender {
     private String name;
 
     @OneToMany(mappedBy = "gender")
-    private List<Category> categories; // Relación inversa, opcional
+    private List<Category> categories;
 }

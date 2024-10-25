@@ -69,7 +69,6 @@ function NatVar() {
           ))}
         </div>
         <button className="home-button">Feature</button>
-        <button className="home-button">Contact</button>
         <button className="home-button" onClick={handleAdminClick}>Admin</button>
         <button className="home-button" onClick={toggleLoginModal}>Sing In</button>
       </div>

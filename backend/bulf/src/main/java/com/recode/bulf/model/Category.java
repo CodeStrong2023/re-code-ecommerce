@@ -28,12 +28,9 @@ public class Category {
     @ManyToOne
     @JoinColumn(name = "gender_id", nullable = false)
     @JsonBackReference
-    private Gender gender; // Relación con Gender
-
+    private Gender gender;
     @OneToMany(mappedBy = "category")
     private List<Subcategory> subcategories;
-
-    // Constructor para permitir deserialización solo con el ID
     @JsonCreator
     public Category(Long id) {
         this.id = id;

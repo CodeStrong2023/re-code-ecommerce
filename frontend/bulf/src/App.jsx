@@ -5,7 +5,7 @@ import AdminView from './components/admin/AdminView'
 import ProductsList from './components/product/ProductsList'
 import ProductView from './components/product/ProductView';
 import { ProductFilterProvider } from './components/product/ProductFilterContext';
-
+import './App.css';
 
 
 function App() {

@@ -34,11 +34,30 @@ public class AdminCreateController {
         return ResponseEntity.ok(createCategory);
     }
 
+    @DeleteMapping("/gender/{id}")
+    public ResponseEntity<Void> deleteGender(@PathVariable Long id) {
+        adminService.deleteGender(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/category/{id}")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        adminService.deleteCategory(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/subcategory/{id}")
+    public ResponseEntity<Void> deleteSubcategory(@PathVariable Long id) {
+        adminService.deleteSubcategory(id);
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/subcategory")
     public ResponseEntity<Subcategory> createSubcategory(@RequestBody Subcategory subcategory) {
         Subcategory createSubcategory = adminService.createSubcategory(subcategory);
         return ResponseEntity.ok(createSubcategory);
     }
+
 
     @PostMapping("/product")
     public ResponseEntity<Void> createProduct(@Valid @RequestBody Product product) {
@@ -53,6 +72,7 @@ public class AdminCreateController {
         Page<Product> products = productService.getPagedProducts(page, size);
         return ResponseEntity.ok(products);
     }
+
     @DeleteMapping("/product/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         boolean isDeleted = productService.deleteProductById(id);

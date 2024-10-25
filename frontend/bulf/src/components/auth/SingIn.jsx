@@ -85,6 +85,7 @@ const LoginForm = ({ closeModal }) => {
       </div>
       <button type="submit">Sing In</button>
       <br />
+      <br />
       <p>do not have an account?</p>
       <button type="button" onClick={handleSignUpClick} className="signup-button">
         Signup

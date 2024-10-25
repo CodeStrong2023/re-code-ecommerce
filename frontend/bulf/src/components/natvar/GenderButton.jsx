@@ -1,10 +1,11 @@
 import { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import './GenderButton.css';
 import { ProductFilterContext } from '../product/ProductFilterContext';
 import CategoryButton from './CategoryButton';
+import { useNavigate } from 'react-router-dom';
 
 const GenderButton = ({ gender }) => {
+  const navigate = useNavigate();
   const { handleGenderSelect } = useContext(ProductFilterContext);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
@@ -17,6 +18,7 @@ const GenderButton = ({ gender }) => {
   };
 
   const handleClick = () => {
+    navigate('/home');
     handleGenderSelect(gender.id);
   };
 
@@ -26,7 +28,9 @@ const GenderButton = ({ gender }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div onClick={handleClick}>
+      <div 
+      className='cien'
+      onClick={handleClick}>
         {gender.name}
       </div>
       {isDropdownVisible && (
