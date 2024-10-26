@@ -6,6 +6,8 @@ import { ProductFilterContext } from '../product/ProductFilterContext';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../auth/SingIn';
 import Modal from 'react-modal';
+import { useUser } from '../user/UserContext';
+import ProfileButton from '../user/ProfileButton'
 
 Modal.setAppElement('#root');
 
@@ -14,6 +16,7 @@ function NatVar() {
   const [genders, setGenders] = useState([]);
   const { handleGenderSelect, handleCategorySelect } = useContext(ProductFilterContext);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { user } = useUser();
 
   useEffect(() => {
     const fetchGenders = async () => {
@@ -69,8 +72,16 @@ function NatVar() {
           ))}
         </div>
         <button className="home-button">Feature</button>
-        <button className="home-button" onClick={handleAdminClick}>Admin</button>
-        <button className="home-button" onClick={toggleLoginModal}>Sing In</button>
+
+        {user && user.isAdmin && (
+          <button className="home-button" onClick={handleAdminClick}>Admin</button>
+        )}
+
+        {user ? (
+          <ProfileButton className="home-button" />
+        ) : (
+          <button className="home-button" onClick={toggleLoginModal}>Sing In</button>
+        )}
       </div>
 
       <Modal

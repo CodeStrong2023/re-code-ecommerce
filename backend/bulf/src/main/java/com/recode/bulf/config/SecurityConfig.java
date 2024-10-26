@@ -62,7 +62,7 @@ public class SecurityConfig {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**")
-                    .allowedOrigins("http://127.0.0.1:5173") // Cambia la URL según corresponda
+                    .allowedOrigins("http://localhost:5173") // Cambia la URL según corresponda
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true);
@@ -74,7 +74,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
-        configuration.addAllowedOrigin("http://127.0.0.1:5173"); // Cambia esto al origen correcto
+        configuration.addAllowedOrigin("http://localhost:5173"); // Cambia esto al origen correcto
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
 

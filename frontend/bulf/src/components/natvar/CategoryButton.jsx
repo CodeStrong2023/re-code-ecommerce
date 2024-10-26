@@ -13,7 +13,6 @@ const CategoryButton = ({ category }) => {
   };
   return (
     <button
-    
       onClick={handleClick}
     >
       {category.name}

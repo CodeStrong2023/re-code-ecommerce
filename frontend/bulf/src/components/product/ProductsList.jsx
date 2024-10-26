@@ -36,7 +36,6 @@ const ProductsList = () => {
         console.error('Error fetching products:', error);
       }
     };
-    console.log('Fetching products with:', { currentPage, selectedGenderId, selectedCategoryId });
     fetchProducts();
   }, [currentPage, selectedGenderId, selectedCategoryId]);
 

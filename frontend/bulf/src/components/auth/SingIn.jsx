@@ -3,8 +3,10 @@ import './Sing.css';
 import { getApiUrl } from '../../config';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useUser } from '../user/UserContext'
 
 const LoginForm = ({ closeModal }) => {
+  const { login } = useUser();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,10 +21,8 @@ const LoginForm = ({ closeModal }) => {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const loginUrl = getApiUrl('/auth/login');
       const response = await fetch(loginUrl, {
@@ -32,32 +32,24 @@ const LoginForm = ({ closeModal }) => {
         },
         body: JSON.stringify(formData),
       });
+
       if (!response.ok) {
         const errorMessage = await response.text();
         alert(errorMessage);
         throw new Error('Login failed');
       }
-      const contentType = response.headers.get('content-type');
-      let data;
-      if (contentType && contentType.includes('application/json')) {
-        data = await response.json();
-      } else {
-        data = await response.text();
-      }
-      console.log('Login successful:', data);
-      closeModal();
-      navigate('/home');
-
+      const data = await response.json()
+      login(data.access_token);
     } catch (error) {
       console.error('Login failed:', error.message);
     }
+    closeModal();
   };
 
   const handleSignUpClick = () => {
     navigate('/signup');
     closeModal();
   };
-
   return (
     <form className="register-form" onSubmit={handleSubmit}>
       <h2>Login</h2>
@@ -83,10 +75,10 @@ const LoginForm = ({ closeModal }) => {
           required
         />
       </div>
-      <button type="submit">Sing In</button>
+      <button type="submit">Sign In</button>
       <br />
       <br />
-      <p>do not have an account?</p>
+      <p>Do not have an account?</p>
       <button type="button" onClick={handleSignUpClick} className="signup-button">
         Signup
       </button>

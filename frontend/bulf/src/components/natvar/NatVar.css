@@ -37,13 +37,13 @@
 
 .genders-container {
   display: flex;
-  justify-content: center;
-  width: 50%;
-  margin-bottom: 20px;
+  width: 60%;
 }
+
 .cien {
-width: 100%;
+  width: 100%;
 }
+
 .gender-button {
   width: 100%;
   padding: 12px;
@@ -58,9 +58,8 @@ width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
-
 .dropdown {
+  width: 100%;
   position: absolute;
   top: 100%;
   left: 0;
@@ -127,6 +126,7 @@ width: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
+
 .close-modal {
   position: absolute;
   top: 5px;
@@ -148,5 +148,3 @@ width: 100%;
 .close-modal:hover {
   background-color: #6a0f0a;
 }
-
-

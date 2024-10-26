@@ -28,9 +28,9 @@ const GenderButton = ({ gender }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div 
-      className='cien'
-      onClick={handleClick}>
+      <div
+        className='cien'
+        onClick={handleClick}>
         {gender.name}
       </div>
       {isDropdownVisible && (

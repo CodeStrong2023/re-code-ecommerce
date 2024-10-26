@@ -110,7 +110,7 @@ public class AuthService {
                 throw new IllegalArgumentException("Invalid auth header");
             }
             final String refreshToken = authentication.substring(7);
-            final String userEmail = jwtService.extractUsername(refreshToken);
+            final String userEmail = jwtService.extractEmail(refreshToken);
             if (userEmail == null) {
                 throw new IllegalArgumentException("Invalid refresh token");
             }
