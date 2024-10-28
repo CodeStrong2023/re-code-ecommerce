@@ -2,7 +2,6 @@ package com.recode.bulf.service;
 
 import com.recode.bulf.model.Category;
 import com.recode.bulf.model.Gender;
-import com.recode.bulf.model.Product;
 import com.recode.bulf.model.Subcategory;
 import com.recode.bulf.repository.CategoryRepository;
 import com.recode.bulf.repository.GenderRepository;
@@ -26,15 +25,15 @@ public class ClassifierService {
     @Autowired
     private final SubcategoryRepository subcategoryRepository;
 
-
-    public List<Gender> getAllGenders(){
+    public List<Gender> getAllGenders() {
         return genderRepository.findAll();
     }
-    public List<Category> getAllCategories(){
+
+    public List<Category> getAllCategories() {
         return categoryRepository.findAll();
     }
 
-    public List<Subcategory> getAllSubcategories(){
+    public List<Subcategory> getAllSubcategories() {
         return subcategoryRepository.findAll();
     }
 }

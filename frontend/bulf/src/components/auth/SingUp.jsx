@@ -10,7 +10,6 @@ const RegisterForm = () => {
     email: '',
     password: ''
   });
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -18,13 +17,10 @@ const RegisterForm = () => {
       [name]: value
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const registerUrl = getApiUrl('/auth/register');
-
       const response = await fetch(registerUrl, {
         method: 'POST',
         headers: {
@@ -32,29 +28,24 @@ const RegisterForm = () => {
         },
         body: JSON.stringify(formData)
       });
-
       if (!response.ok) {
         const errorMessage = await response.text();
         alert(errorMessage);
         throw new Error('Login failed');
       }
-
       const contentType = response.headers.get('content-type');
       let data;
-
       if (contentType && contentType.includes('application/json')) {
         data = await response.json();
       } else {
         data = await response.text();
       }
-
-      alert("Your account was successfully created", data) ;
+      alert("Your account was successfully created", data);
       navigate('/home');
     } catch (error) {
       console.error('Login failed:', error.message);
     }
   };
-
   return (
     <form className="register-form" onSubmit={handleSubmit}>
       <h2>Singup</h2>

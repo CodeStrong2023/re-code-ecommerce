@@ -66,9 +66,7 @@ public class AdminCreateController {
     }
 
     @GetMapping("/product")
-    public ResponseEntity<Page<Product>> getPagedProducts(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "100") int size) {
+    public ResponseEntity<Page<Product>> getPagedProducts(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "100") int size) {
         Page<Product> products = productService.getPagedProducts(page, size);
         return ResponseEntity.ok(products);
     }
@@ -84,9 +82,7 @@ public class AdminCreateController {
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity<Product> updateProduct(
-            @PathVariable Long id,
-            @RequestBody Product updatedProduct) {
+    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
 
         Product product = productService.updateProduct(id, updatedProduct);
 

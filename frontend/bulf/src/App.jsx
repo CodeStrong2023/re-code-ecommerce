@@ -9,6 +9,9 @@ import './App.css';
 import { UserProvider } from './components/user/UserContext';
 import ProtectedRoute from './components/user/ProtectedRoute';
 import { CartProvider } from './components/user/CartContext';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 function App() {
   return (

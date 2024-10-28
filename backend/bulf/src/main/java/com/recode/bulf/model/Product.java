@@ -49,4 +49,7 @@ public class Product {
     @Column
     private LocalDateTime date;
 
+    public void purchase() {
+        stock--;
+    }
 }

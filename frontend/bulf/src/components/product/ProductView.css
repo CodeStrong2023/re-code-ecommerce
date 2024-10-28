@@ -29,7 +29,7 @@
 }
 
 .thumbnail {
-  flex:content;
+  flex: content;
   width: 60px;
   height: 60px;
   cursor: pointer;
@@ -42,16 +42,16 @@
 }
 
 .thumbnail.active {
-  border: 2px solid #e53935; /* Borde resaltado para la imagen activa */
+  border: 2px solid #e53935;
 }
 
 .details-section {
   margin: 40px;
   flex: 1;
   flex-direction: column;
-  text-align: start; 
+  text-align: start;
   color: black;
- 
+
 }
 
 .product-name {
@@ -63,10 +63,10 @@
 }
 
 .price-section {
-  
+
   margin: 15px;
   gap: 10px;
-  
+
 }
 
 .current-price {
@@ -88,7 +88,9 @@
   margin: 20px;
 }
 
-.shipping-info, .delivery-info, .security-info {
+.shipping-info,
+.delivery-info,
+.security-info {
   font-size: 14px;
   margin-bottom: 5px;
 }
@@ -96,17 +98,18 @@
 
 .buttons-section {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones a la derecha */
-  align-items: flex-end; /* Alinea los botones al fondo del contenedor */
-  gap: 10px; /* Añade un espacio entre los botones */
-  margin-top:   0px;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 10px;
+  margin-top: 0px;
 }
 
-.buy-button, .add-to-cart-button {
+.buy-button,
+.add-to-cart-button {
   background-color: #e53935;
   color: white;
-  width: auto; /* Para ajustar el ancho automático */
-  padding: 10px 20px; /* Añade algo de padding para que se vean mejor */
+  width: auto;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -114,19 +117,19 @@
 }
 
 .buy-button {
-  background-color: #e53935; /* Botón rojo */
+  background-color: #e53935;
 }
 
 .buy-button:hover {
-  background-color: #c62828; /* Color al hacer hover */
+  background-color: #c62828;
 }
 
 .add-to-cart-button {
-  background-color: #fbc02d; /* Botón amarillo */
+  background-color: #fbc02d;
 }
 
 .add-to-cart-button:hover {
-  background-color: #f9a825; /* Color al hacer hover */
+  background-color: #f9a825;
 }
 
 .description-section {

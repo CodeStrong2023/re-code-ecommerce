@@ -5,3 +5,5 @@ application:
       expiration: 86400000
       refresh-token:
         expiration: 604800000
+    mercado-pago:
+      token: TEST-4211162623316355-102721-97f8c196de766afb34090ba96b94a954-187606246

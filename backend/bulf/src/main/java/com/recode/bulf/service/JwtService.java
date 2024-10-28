@@ -22,12 +22,7 @@ public class JwtService {
     private long refreshExpiration;
 
     public String extractEmail(String token) {
-        return Jwts.parser()
-                .verifyWith(getSignInKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getSubject();
+        return Jwts.parser().verifyWith(getSignInKey()).build().parseSignedClaims(token).getPayload().getSubject();
     }
 
     public String generateToken(final User user) {
@@ -39,23 +34,12 @@ public class JwtService {
     }
 
     private String buildToken(final User user, final long expiration) {
-        return Jwts
-                .builder()
-                .claims(Map.of(
-                        "email", user.getEmail(),
-                        "username", user.getUsername(),
-                        "isAdmin", user.isAdmin()
-                ))
-                .subject(user.getEmail())
-                .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSignInKey())
-                .compact();
+        return Jwts.builder().claims(Map.of("email", user.getEmail(), "username", user.getUsername(), "isAdmin", user.isAdmin())).subject(user.getEmail()).issuedAt(new Date(System.currentTimeMillis())).expiration(new Date(System.currentTimeMillis() + expiration)).signWith(getSignInKey()).compact();
     }
 
-    public boolean isTokenValid(String token, User user) {
+    public boolean isTokenValid(String token, String userEmail) {
         final String email = extractEmail(token);
-        return (email.equals(user.getEmail())) && !isTokenExpired(token);
+        return (email.equals(userEmail)) && !isTokenExpired(token);
     }
 
     private boolean isTokenExpired(String token) {
@@ -63,12 +47,7 @@ public class JwtService {
     }
 
     private Date extractExpiration(String token) {
-        return Jwts.parser()
-                .verifyWith(getSignInKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload()
-                .getExpiration();
+        return Jwts.parser().verifyWith(getSignInKey()).build().parseSignedClaims(token).getPayload().getExpiration();
     }
 
     private SecretKey getSignInKey() {

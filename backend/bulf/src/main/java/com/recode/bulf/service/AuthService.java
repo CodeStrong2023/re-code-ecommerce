@@ -15,7 +15,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -50,19 +49,13 @@ public class AuthService {
 
     public TokenResponse authenticate(final AuthRequest request) {
         try {
-            authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(
-                            request.email(),
-                            request.password()
-                    )
-            );
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         } catch (AuthenticationException e) {
             throw new IllegalArgumentException("Invalid email or password.");
         }
 
         try {
-            final User user = userRepository.findByEmail(request.email())
-                    .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + request.email()));
+            final User user = userRepository.findByEmail(request.email()).orElseThrow(() -> new IllegalArgumentException("User not found with email: " + request.email()));
             final String accessToken = jwtService.generateToken(user);
             final String refreshToken = jwtService.generateRefreshToken(user);
 
@@ -117,7 +110,7 @@ public class AuthService {
 
             final User user = userRepository.findByEmail(userEmail)
                     .orElseThrow(() -> new IllegalArgumentException("User not found with email: " + userEmail));
-            final boolean isTokenValid = jwtService.isTokenValid(refreshToken, user);
+            final boolean isTokenValid = jwtService.isTokenValid(refreshToken, user.getEmail());
             if (!isTokenValid) {
                 throw new IllegalArgumentException("Invalid refresh token");
             }

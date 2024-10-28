@@ -31,6 +31,7 @@ public class Category {
     private Gender gender;
     @OneToMany(mappedBy = "category")
     private List<Subcategory> subcategories;
+
     @JsonCreator
     public Category(Long id) {
         this.id = id;

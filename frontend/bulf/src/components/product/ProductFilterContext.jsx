@@ -10,13 +10,11 @@ export const ProductFilterProvider = ({ children }) => {
   const handleGenderSelect = (genderId) => {
     setSelectedGenderId(genderId);
     setSelectedCategoryId(null);
-    console.log(`Género seleccionado: ${genderId}`);
   };
 
   const handleCategorySelect = (categoryId) => {
     setSelectedCategoryId(categoryId);
     setSelectedGenderId(null);
-    console.log(`Categoría seleccionada: ${categoryId}`);
   };
 
   return (

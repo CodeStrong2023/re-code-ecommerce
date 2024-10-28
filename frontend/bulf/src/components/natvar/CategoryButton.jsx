@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ProductFilterContext } from '../product/ProductFilterContext';
 import { useNavigate } from 'react-router-dom';
 
-
 const CategoryButton = ({ category }) => {
   const navigate = useNavigate();
   const { handleCategorySelect } = useContext(ProductFilterContext);
@@ -12,9 +11,7 @@ const CategoryButton = ({ category }) => {
     handleCategorySelect(category.id);
   };
   return (
-    <button
-      onClick={handleClick}
-    >
+    <button onClick={handleClick}>
       {category.name}
     </button>
   );

@@ -9,7 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -54,6 +53,7 @@ public class ProductService {
     public Page<Product> getPagedProducts(int page, int size) {
         return productRepository.findAllOrderedByIdDesc(createPageRequest(page, size, "id"));
     }
+
     public boolean deleteProductById(Long id) {
         if (productRepository.existsById(id)) {
             productRepository.deleteById(id);

@@ -2,7 +2,6 @@ package com.recode.bulf.controller;
 
 import com.recode.bulf.model.Category;
 import com.recode.bulf.model.Gender;
-import com.recode.bulf.model.Product;
 import com.recode.bulf.model.Subcategory;
 import com.recode.bulf.service.ClassifierService;
 import lombok.RequiredArgsConstructor;
@@ -21,20 +20,17 @@ public class ClassifierController {
     @Autowired
     private final ClassifierService classifierService;
 
-
     @GetMapping("/genders")
     public ResponseEntity<List<Gender>> getAllGenders() {
         List<Gender> genders = classifierService.getAllGenders();
         return ResponseEntity.ok(genders); // 200 OK
     }
 
-
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = classifierService.getAllCategories();
         return ResponseEntity.ok(categories); // 200 OK
     }
-
 
     @GetMapping("/subcategories")
     public ResponseEntity<List<Subcategory>> getAllSubcategories() {

@@ -1,11 +1,57 @@
+import { useEffect, useState } from 'react';
 import { useCart } from './CartContext';
+import { useUser } from './UserContext';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
+
 import './CartView.css';
 
 const CartView = () => {
   const { cartItems, removeFromCart, addToCart, decreaseQuantity } = useCart();
+  const { user, token } = useUser();
+  const [preferenceId, setPreferenceId] = useState(null);
 
-  const handlePurchase = () => {
-    alert("Thank you for your purchase!");
+  useEffect(() => {
+    initMercadoPago('TEST-66ca14b3-4f75-4369-801a-e96c54b1f2d7', { locale: 'es-AR' });
+  }, []);
+
+  const handlePurchase = async () => {
+    if (!user) {
+      alert("You must be logged in to make a purchase.");
+      return;
+    }
+
+    const productData = cartItems.map(item => ({
+      id: item.id,
+      quantity: item.quantity
+    }));
+
+    const purchaseData = {
+      email: user.email,
+      products: productData,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8080/api/auth/user/purchase', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(purchaseData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Purchase failed');
+      }
+
+      const preferenceId = await response.text();
+      setPreferenceId(preferenceId); // Establece el preferenceId para mostrar el componente Wallet
+      
+
+    } catch (error) {
+      console.error("Error during purchase:", error);
+      alert("There was an issue with your purchase. Please try again.");
+    }
   };
 
   return (
@@ -46,6 +92,11 @@ const CartView = () => {
           <div className="purchase-section">
             <button onClick={handlePurchase} className="purchase-button">Buy Now</button>
           </div>
+          {preferenceId && (
+            <div className="wallet-container">
+              <Wallet initialization={{ preferenceId }} /> 
+            </div>
+          )}
         </>
       )}
     </div>

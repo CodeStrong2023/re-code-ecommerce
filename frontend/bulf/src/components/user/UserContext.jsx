@@ -21,8 +21,10 @@ export const UserProvider = ({ children }) => {
         setUser(null);
     };
 
+    const token = Cookies.get('jwt');
+
     return (
-        <UserContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, token, login, logout }}>
             {children}
         </UserContext.Provider>
     );

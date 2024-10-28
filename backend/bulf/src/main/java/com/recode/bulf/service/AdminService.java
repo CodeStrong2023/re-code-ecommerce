@@ -38,12 +38,11 @@ public class AdminService {
     public Subcategory createSubcategory(Subcategory subcategory) {
         return subcategoryRepository.save(subcategory);
     }
-    public void deleteSubcategory(Long subcategoryId) {
-        subcategoryRepository.delete(
-                subcategoryRepository.findById(subcategoryId).get()
-        );
 
+    public void deleteSubcategory(Long subcategoryId) {
+        subcategoryRepository.delete(subcategoryRepository.findById(subcategoryId).get());
     }
+
     public void deleteCategory(Long categoryId) {
         List<Subcategory> subcategories = subcategoryRepository.findByCategoryId(categoryId);
         for (Subcategory subcategory : subcategories) {
@@ -51,6 +50,7 @@ public class AdminService {
         }
         categoryRepository.deleteById(categoryId);
     }
+
     public void deleteGender(Long genderId) {
         List<Category> categories = categoryRepository.findByGenderId(genderId);
         for (Category category : categories) {

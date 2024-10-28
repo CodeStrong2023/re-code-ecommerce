@@ -30,7 +30,8 @@ const GenderButton = ({ gender }) => {
     >
       <div
         className='cien'
-        onClick={handleClick}>
+        onClick={handleClick}
+      >
         {gender.name}
       </div>
       {isDropdownVisible && (

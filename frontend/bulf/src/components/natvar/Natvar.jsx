@@ -9,8 +9,6 @@ import Modal from 'react-modal';
 import { useUser } from '../user/UserContext';
 import ProfileButton from '../user/ProfileButton'
 
-Modal.setAppElement('#root');
-
 function NatVar() {
   const navigate = useNavigate();
   const [genders, setGenders] = useState([]);
@@ -31,7 +29,7 @@ function NatVar() {
         console.error(error);
       }
     };
-
+    
     fetchGenders();
   }, []);
 
