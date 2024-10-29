@@ -20,7 +20,7 @@ public class UserService {
     @Autowired
     private final ProductRepository productRepository;
 
-    public boolean processPurchase(List<ProductPurchase> productsPurchase, String email) {
+    public void processPurchase(List<ProductPurchase> productsPurchase, String email) {
         User user = userRepository.findByEmail(email).get();
         List<Product> products = new ArrayList<>();
         for (ProductPurchase productPurchase : productsPurchase) {
@@ -33,6 +33,5 @@ public class UserService {
             product.purchase();
         }
         productRepository.saveAll(products);
-        return user.purchase(products);
     }
 }

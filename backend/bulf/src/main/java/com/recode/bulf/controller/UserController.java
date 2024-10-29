@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @RequestMapping("/api/auth/user")
@@ -33,16 +34,29 @@ public class UserController {
         if (!jwtService.isTokenValid(token, purchaseRequest.email())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token or email");
         }
-        boolean success = userService.processPurchase(purchaseRequest.products(), purchaseRequest.email());
+        userService.processPurchase(purchaseRequest.products(), purchaseRequest.email());
         PreferenceClient client = new PreferenceClient();
         try {
             Preference preference = client.create(mercadoPagoService.processesPay(purchaseRequest));
+            System.out.println(preference.getId());
+            System.out.println(preference.getPayer().getEmail());
+
             return ResponseEntity.ok(preference.getId());
         } catch (MPException e) {
-            return ResponseEntity.status(500).body("Error al crear la preferencia de pago");
+            return ResponseEntity.status(500).body("Error payments preference");
         } catch (MPApiException e) {
-            return ResponseEntity.status(500).body("Error al crear la preferencia de pago");
+            return ResponseEntity.status(500).body("Error payments preference");
         }
+    }
+
+    @GetMapping("/mercado-pago")
+    public RedirectView receiveMercadoPagoResponse(
+            @RequestParam Long payment_id
+    ) {
+        System.out.println("Payment ID: " + payment_id);
+        mercadoPagoService.createPurchase(payment_id );
+
+        return new RedirectView("http://localhost:5173/succes-purchase");
     }
 
 

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,7 +21,7 @@ public class User {
     @GeneratedValue
     private Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(nullable = false, unique = true)
@@ -29,11 +30,13 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(columnDefinition = "boolean default false")
-    private boolean isAdmin;
+    @Column()
+    private boolean isAdmin = false;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Token> tokens;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Purchase> purchases = new ArrayList<>();
+    
 }

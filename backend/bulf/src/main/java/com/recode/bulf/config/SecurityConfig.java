@@ -34,7 +34,25 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(req -> req.requestMatchers("/api/**").permitAll().anyRequest().authenticated()).sessionManagement(session -> session.sessionCreationPolicy(STATELESS)).authenticationProvider(authenticationProvider).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class).logout(logout -> logout.logoutUrl("/auth/logout").addLogoutHandler(this::logout).logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()));
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(req -> req
+                        .requestMatchers("/api/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
+                )
+                .sessionManagement(session -> session.
+                        sessionCreationPolicy(STATELESS)
+                )
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout
+                        .logoutUrl("/auth/logout")
+                        .addLogoutHandler(this::logout)
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder
+                                .clearContext()
+                        )
+                );
         return http.build();
     }
 
@@ -55,7 +73,11 @@ public class SecurityConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**").allowedOrigins("http://localhost:5173").allowedMethods("*").allowedHeaders("*").allowCredentials(true);
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:5173/")
+                .allowedMethods("*")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 
 }

@@ -45,7 +45,8 @@ const CartView = () => {
       }
 
       const preferenceId = await response.text();
-      setPreferenceId(preferenceId); // Establece el preferenceId para mostrar el componente Wallet
+      console.log(preferenceId)
+      setPreferenceId(preferenceId);
       
 
     } catch (error) {
