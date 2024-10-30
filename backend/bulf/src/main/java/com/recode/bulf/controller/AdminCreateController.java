@@ -1,17 +1,18 @@
 package com.recode.bulf.controller;
 
-import com.recode.bulf.model.Category;
-import com.recode.bulf.model.Gender;
-import com.recode.bulf.model.Product;
-import com.recode.bulf.model.Subcategory;
+import com.recode.bulf.dto.PurchaseDTO;
+import com.recode.bulf.model.*;
 import com.recode.bulf.service.AdminService;
 import com.recode.bulf.service.ProductService;
+import com.recode.bulf.service.PurchaseService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/auth/admin")
@@ -21,6 +22,8 @@ public class AdminCreateController {
     private final AdminService adminService;
     @Autowired
     private final ProductService productService;
+    @Autowired
+    private final PurchaseService purchaseService;
 
     @PostMapping("/gender")
     public ResponseEntity<Gender> createGender(@RequestBody Gender gender) {
@@ -83,14 +86,17 @@ public class AdminCreateController {
 
     @PutMapping("/product/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
-
         Product product = productService.updateProduct(id, updatedProduct);
-
         if (product != null) {
             return ResponseEntity.ok(product);
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @GetMapping("/purchase")
+    public ResponseEntity<List<PurchaseDTO>> getAllPurchase() {
+        return ResponseEntity.ok(purchaseService.getAll());
     }
 
 }

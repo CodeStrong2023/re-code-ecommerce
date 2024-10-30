@@ -8,8 +8,10 @@ import SubcategoryForm from './SubcategoryForm';
 import GenderDeleteForm from './GenderDeleteForm.jsx'
 import CategoryDeleteForm from './CategoryDeleteForm.jsx'
 import SubcategoryDeleteForm from './SubcategoryDeleteForm.jsx'
+import { useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
+    const navigate = useNavigate();
     const [isProductFormOpen, setIsProductFormOpen] = useState(false);
     const [isGenderFormOpen, setIsGenderFormOpen] = useState(false);
     const [isGenderDeleteFormOpen, setIsGenderDeleteFormOpen] = useState(false);
@@ -48,6 +50,9 @@ const AdminPanel = () => {
         setIsSubcategoryDeleteFormOpen(!isSubcategoryDeleteFormOpen)
         console.log('Borrar Subcategoría');
     };
+    const handlePurchaseOrders = () => {
+        navigate('/admin/purchase-orders')
+    };
 
 
     return (
@@ -64,6 +69,7 @@ const AdminPanel = () => {
                 <button className="delete-button" onClick={handleDeleteGender}>Borrar Género</button>
                 <button className="delete-button" onClick={handleDeleteCategory}>Borrar Categoría</button>
                 <button className="delete-button" onClick={handleDeleteSubcategory}>Borrar Subcategoría</button>
+                <button className="admin-button" onClick={handlePurchaseOrders}>Purchases Orders</button>
             </div>
 
             <Modal

@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-        if (request.getServletPath().contains("/api1/auth")) {
+        if (request.getServletPath().contains("/api/auth")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -54,10 +54,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final boolean isTokenExpiredOrRevoked = tokenRepository.findByToken(jwt).map(token -> !token.getIsExpired() && !token.getIsRevoked()).orElse(false);
         if (isTokenExpiredOrRevoked) {
             final Optional<User> user = userRepository.findByEmail(userEmail);
-
             if (user.isPresent()) {
                 final boolean isTokenValid = jwtService.isTokenValid(jwt, user.get().getEmail());
-
                 if (isTokenValid) {
                     UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

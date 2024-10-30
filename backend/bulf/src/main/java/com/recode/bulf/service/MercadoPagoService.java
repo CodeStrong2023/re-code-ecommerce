@@ -59,7 +59,9 @@ public class MercadoPagoService {
                     Product product = productRepository.findById(item.path("id").asLong()).get();
                     for (int i = 0; i < item.path("quantity").asInt(); i++) {
                         products.add(product);
+                        product.purchase();
                     }
+                    productRepository.save(product);
                 }
                 purchase.setPaymentId(jsonNode.path("id").asLong());
                 purchase.setStatus(jsonNode.path("status").asText());
@@ -100,10 +102,9 @@ public class MercadoPagoService {
                 .name(user.getUsername())
                 .email(user.getEmail())
                 .build();
-        System.out.println(payer.toString());
         PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.
                 builder()
-                .failure("http://localhost:8080/api/auth/user/mercado-pago")
+                .failure("http://localhost:5173/failed-purchase")
                 .success("http://localhost:8080/api/auth/user/mercado-pago")
                 .pending("http://localhost:8080/api/auth/user/mercado-pago")
                 .build();
@@ -113,12 +114,8 @@ public class MercadoPagoService {
                 .payer(payer)
                 .backUrls(backUrls)
                 .autoReturn("approved")
-                .notificationUrl("https://www.youtube.com/")
+                .notificationUrl("https://github.com/ivorossi")
                 .build();
         return preferenceRequest;
     }
-
-
-
-
 }

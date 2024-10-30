@@ -23,18 +23,18 @@ public class ClassifierController {
     @GetMapping("/genders")
     public ResponseEntity<List<Gender>> getAllGenders() {
         List<Gender> genders = classifierService.getAllGenders();
-        return ResponseEntity.ok(genders); // 200 OK
+        return ResponseEntity.ok(genders);
     }
 
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> getAllCategories() {
         List<Category> categories = classifierService.getAllCategories();
-        return ResponseEntity.ok(categories); // 200 OK
+        return ResponseEntity.ok(categories);
     }
 
     @GetMapping("/subcategories")
     public ResponseEntity<List<Subcategory>> getAllSubcategories() {
         List<Subcategory> subcategories = classifierService.getAllSubcategories();
-        return ResponseEntity.ok(subcategories); // 200 OK
+        return ResponseEntity.ok(subcategories);
     }
 }

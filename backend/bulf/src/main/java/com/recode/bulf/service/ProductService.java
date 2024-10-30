@@ -1,6 +1,7 @@
 package com.recode.bulf.service;
 
 import com.recode.bulf.dto.ProductCard;
+import com.recode.bulf.dto.ProductPurchase;
 import com.recode.bulf.model.Product;
 import com.recode.bulf.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -79,5 +81,15 @@ public class ProductService {
         } else {
             return null;
         }
+    }
+
+    public boolean isNotStockAvailable(List<ProductPurchase> productsPurchased) {
+        for(ProductPurchase productPurchase: productsPurchased){
+            Product product = productRepository.findById(productPurchase.id()).get();
+            if(!product.isStockPresent(productPurchase.quantity())){
+                return true;
+            }
+        }
+        return false;
     }
 }

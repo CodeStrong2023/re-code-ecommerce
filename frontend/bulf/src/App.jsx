@@ -9,6 +9,7 @@ import './App.css';
 import { UserProvider } from './components/user/UserContext';
 import ProtectedRoute from './components/user/ProtectedRoute';
 import { CartProvider } from './components/user/CartContext';
+import AdminPurchaseTable from './components/admin/AdminPurchaseTable'
 import Modal from 'react-modal';
 
 Modal.setAppElement('#root');
@@ -33,6 +34,7 @@ function App() {
                     </ProtectedRoute>
                   }
                 />
+                <Route path="/admin/purchase-orders" element={<ProtectedRoute><AdminPurchaseTable /></ProtectedRoute>} />
               </Routes>
             </ProductFilterProvider>
           </CartProvider>

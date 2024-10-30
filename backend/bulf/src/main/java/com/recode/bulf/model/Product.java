@@ -52,4 +52,8 @@ public class Product {
     public void purchase() {
         stock--;
     }
+
+    public boolean isStockPresent(int amount) {
+        return stock >= amount;
+    }
 }

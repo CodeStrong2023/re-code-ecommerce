@@ -29,7 +29,6 @@ const CartView = () => {
       email: user.email,
       products: productData,
     };
-
     try {
       const response = await fetch('http://localhost:8080/api/auth/user/purchase', {
         method: 'POST',
@@ -39,9 +38,10 @@ const CartView = () => {
         },
         body: JSON.stringify(purchaseData),
       });
-
       if (!response.ok) {
-        throw new Error('Purchase failed');
+        const errorMessage = await response.text();
+        alert(errorMessage);
+        throw new Error(errorMessage);
       }
 
       const preferenceId = await response.text();
@@ -50,8 +50,7 @@ const CartView = () => {
       
 
     } catch (error) {
-      console.error("Error during purchase:", error);
-      alert("There was an issue with your purchase. Please try again.");
+      console.log(error);
     }
   };
 

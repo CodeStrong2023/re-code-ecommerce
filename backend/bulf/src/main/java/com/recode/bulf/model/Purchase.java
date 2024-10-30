@@ -27,11 +27,11 @@ public class Purchase {
     @Column(name = "payment_type", nullable = false)
     private String paymentType;
 
-    @Column(name = "preference_id", nullable = false, unique = true)
+    @Column(name = "preference_id", nullable = false)
     private String preferenceId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne()
+    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "id")
     private User user;
 
     @ManyToMany

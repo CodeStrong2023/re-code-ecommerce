@@ -11,12 +11,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public final class HttpConnection {
-    private HttpConnection() {}
+    private HttpConnection() {
+    }
 
-    private static final HttpClient client = HttpClient.newBuilder()
+    private static final HttpClient client = HttpClient
+            .newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
-
     public static Optional<HttpResponse<String>> get(String uri, Map<String, List<String>> headers) {
         HttpRequest request = buildRequest(uri, headers, "GET", null);
         return sendRequest(request);
@@ -33,19 +34,17 @@ public final class HttpConnection {
     }
 
     private static HttpRequest buildRequest(String uri, Map<String, List<String>> headers, String method, String body) {
-        HttpRequest.Builder requestBuilder = HttpRequest.newBuilder()
+        HttpRequest.Builder requestBuilder = HttpRequest
+                .newBuilder()
                 .uri(URI.create(uri))
                 .timeout(Duration.ofSeconds(10));
-
         headers.forEach((key, values) -> values.forEach(value -> requestBuilder.header(key, value)));
-
         switch (method.toUpperCase()) {
             case "POST" -> requestBuilder.POST(HttpRequest.BodyPublishers.ofString(body != null ? body : ""));
             case "PUT" -> requestBuilder.PUT(HttpRequest.BodyPublishers.ofString(body != null ? body : ""));
             case "DELETE" -> requestBuilder.DELETE();
             default -> requestBuilder.GET();
         }
-
         return requestBuilder.build();
     }
 

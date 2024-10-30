@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './ProfileButton.css';
 import CartView from './CartView';
 import Modal from 'react-modal';
+import PurchasesTable from './PurchaseTable'; // Asegúrate de importar la vista de compras
 
 const ProfileButton = () => {
   const { user, logout } = useUser();
@@ -12,7 +13,9 @@ const ProfileButton = () => {
   const navigate = useNavigate();
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [isPurchasesModalOpen, setIsPurchasesModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const handleLogout = () => {
     logout();
     navigate('/home');
@@ -23,7 +26,7 @@ const ProfileButton = () => {
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(prev => !prev);
+    setIsMenuOpen((prev) => !prev);
   };
 
   return (
@@ -36,8 +39,9 @@ const ProfileButton = () => {
           </button>
           {isMenuOpen && (
             <div className="dropdown-content">
-              <button onClick={() => { setIsCartModalOpen(true); setIsMenuOpen(false); }} className="logout-button">Cart</button>
-              <button onClick={() => { setIsLogoutModalOpen(true); setIsMenuOpen(false); }} className="logout-button">Logout</button>
+              <button onClick={() => { setIsCartModalOpen(true); setIsMenuOpen(false); }} className="menu-button">Cart</button>
+              <button onClick={() => { setIsPurchasesModalOpen(true); setIsMenuOpen(false); }} className="menu-button">Purchases</button> {/* Botón de compras */}
+              <button onClick={() => { setIsLogoutModalOpen(true); setIsMenuOpen(false); }} className="menu-button">Logout</button>
             </div>
           )}
           <Modal
@@ -61,6 +65,16 @@ const ProfileButton = () => {
           >
             <button onClick={closeModal} className="close-modal">X</button>
             <CartView />
+          </Modal>
+          <Modal
+            isOpen={isPurchasesModalOpen}
+            onRequestClose={() => setIsPurchasesModalOpen(false)}
+            contentLabel="Purchases"
+            className="modal"
+            overlayClassName="modal-overlay"
+          >
+            <button onClick={() => setIsPurchasesModalOpen(false)} className="close-modal">X</button>
+            <PurchasesTable /> 
           </Modal>
         </div>
       ) : (

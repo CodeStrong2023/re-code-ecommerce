@@ -30,7 +30,7 @@ public final class Token {
     @Column(nullable = false)
     private Boolean isExpired;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
 
