@@ -55,7 +55,6 @@ public class UserController {
         if (!jwtService.isTokenValid(token, email)) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token or email");
         }
-
         return ResponseEntity.ok(purchaseService.getPurchaseByEmail(email));
     }
 

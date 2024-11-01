@@ -1,23 +1,23 @@
 .button-cell {
-    display: flex;
-    gap: 0px;
+  display: flex;
+  gap: 0px;
 }
 
 .delete-button {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
 }
 
 .delete-button:hover {
-    background-color: darkred;
+  background-color: darkred;
 }
 
 .main-image-cell a {
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

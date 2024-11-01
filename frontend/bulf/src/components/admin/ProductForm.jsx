@@ -1,29 +1,28 @@
-import { useState, useEffect } from 'react';
-import './ProductForm.css';
+import { useState, useEffect } from "react";
+import "./ProductForm.css";
 
 const ProductForm = () => {
   const [genders, setGenders] = useState([]);
   const [categories, setCategories] = useState([]);
   const [subcategories, setSubcategories] = useState([]);
-  const [selectedGender, setSelectedGender] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedSubcategory, setSelectedSubcategory] = useState('');
-
-  const [name, setName] = useState('');
-  const [mainImage, setMainImage] = useState('');
-  const [images, setImages] = useState(['']);
-  const [description, setDescription] = useState('');
+  const [selectedGender, setSelectedGender] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedSubcategory, setSelectedSubcategory] = useState("");
+  const [name, setName] = useState("");
+  const [mainImage, setMainImage] = useState("");
+  const [images, setImages] = useState([""]);
+  const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [stock, setStock] = useState(0);
 
   useEffect(() => {
     const fetchGenders = async () => {
       try {
-        const response = await fetch('http://localhost:8080/api/genders');
+        const response = await fetch("http://localhost:8080/api/genders");
         const data = await response.json();
         setGenders(data);
       } catch (error) {
-        console.error('Error al obtener los géneros:', error);
+        console.error("Error al obtener los géneros:", error);
       }
     };
     fetchGenders();
@@ -33,12 +32,14 @@ const ProductForm = () => {
     const genderId = e.target.value;
     setSelectedGender(genderId);
 
-    const selectedGenderObj = genders.find(gender => gender.id === parseInt(genderId));
+    const selectedGenderObj = genders.find(
+      (gender) => gender.id === parseInt(genderId)
+    );
     if (selectedGenderObj) {
       setCategories(selectedGenderObj.categories || []);
       setSubcategories([]);
-      setSelectedCategory('');
-      setSelectedSubcategory('');
+      setSelectedCategory("");
+      setSelectedSubcategory("");
     }
   };
 
@@ -46,10 +47,12 @@ const ProductForm = () => {
     const categoryId = e.target.value;
     setSelectedCategory(categoryId);
 
-    const selectedCategoryObj = categories.find(category => category.id === parseInt(categoryId));
+    const selectedCategoryObj = categories.find(
+      (category) => category.id === parseInt(categoryId)
+    );
     if (selectedCategoryObj) {
       setSubcategories(selectedCategoryObj.subcategories || []);
-      setSelectedSubcategory('');
+      setSelectedSubcategory("");
     }
   };
 
@@ -64,7 +67,7 @@ const ProductForm = () => {
   };
 
   const handleAddImage = () => {
-    setImages([...images, '']);
+    setImages([...images, ""]);
   };
 
   const handleSubmit = async (e) => {
@@ -76,47 +79,46 @@ const ProductForm = () => {
       categoryId: selectedCategory,
       subcategoryId: selectedSubcategory,
       mainImage,
-      images: images.filter(url => url),
+      images: images.filter((url) => url),
       description,
       price,
       stock,
     };
-
     try {
-      const response = await fetch('http://localhost:8080/api/auth/admin/product', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product),
-      });
-
+      const response = await fetch(
+        "http://localhost:8080/api/auth/admin/product",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
+        }
+      );
       if (response.ok) {
-        alert('Producto creado exitosamente');
-        setName('');
-        setMainImage('');
-        setImages(['']);
-        setDescription('');
+        alert("Producto creado exitosamente");
+        setName("");
+        setMainImage("");
+        setImages([""]);
+        setDescription("");
         setPrice(0);
         setStock(0);
-        setSelectedGender('');
-        setSelectedCategory('');
-        setSelectedSubcategory('');
+        setSelectedGender("");
+        setSelectedCategory("");
+        setSelectedSubcategory("");
       } else {
-        alert('Error al crear el producto');
+        alert("Error al crear el producto");
       }
     } catch (error) {
-      console.error('Error en la solicitud:', error);
-      alert('Error en la solicitud');
+      console.error("Error en la solicitud:", error);
+      alert("Error en la solicitud");
     }
   };
-
   return (
-
     <form className="product-form" onSubmit={handleSubmit}>
       <div className="column">
         <div className="form-group">
-          <label htmlFor="name">Nombre del Producto:</label>
+          <label htmlFor="name">Product name:</label>
           <input
             type="text"
             id="name"
@@ -125,16 +127,15 @@ const ProductForm = () => {
             required
           />
         </div>
-
         <div className="form-group">
-          <label htmlFor="gender">Género:</label>
+          <label htmlFor="gender">Gender:</label>
           <select
             id="gender"
             value={selectedGender}
             onChange={handleGenderChange}
             required
           >
-            <option value="">Selecciona un género</option>
+            <option value="">Select Gender:</option>
             {genders.map((gender) => (
               <option key={gender.id} value={gender.id}>
                 {gender.name}
@@ -142,9 +143,8 @@ const ProductForm = () => {
             ))}
           </select>
         </div>
-
         <div className="form-group">
-          <label htmlFor="category">Categoría:</label>
+          <label htmlFor="category">Category:</label>
           <select
             id="category"
             value={selectedCategory}
@@ -152,7 +152,7 @@ const ProductForm = () => {
             required
             disabled={!categories.length}
           >
-            <option value="">Selecciona una categoría</option>
+            <option value="">Select Category:</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {category.name}
@@ -160,9 +160,8 @@ const ProductForm = () => {
             ))}
           </select>
         </div>
-
         <div className="form-group">
-          <label htmlFor="subcategory">Subcategoría:</label>
+          <label htmlFor="subcategory">Subcategory:</label>
           <select
             id="subcategory"
             value={selectedSubcategory}
@@ -170,7 +169,7 @@ const ProductForm = () => {
             required
             disabled={!subcategories.length}
           >
-            <option value="">Selecciona una subcategoría</option>
+            <option value="">Select Subcategory:</option>
             {subcategories.map((subcategory) => (
               <option key={subcategory.id} value={subcategory.id}>
                 {subcategory.name}
@@ -178,9 +177,8 @@ const ProductForm = () => {
             ))}
           </select>
         </div>
-
         <div className="form-group">
-          <label htmlFor="mainImage">Imagen principal:</label>
+          <label htmlFor="mainImage">Main Image:</label>
           <input
             type="text"
             id="mainImage"
@@ -190,7 +188,7 @@ const ProductForm = () => {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="price">Precio:</label>
+          <label htmlFor="price">Price:</label>
           <input
             type="number"
             id="price"
@@ -199,12 +197,10 @@ const ProductForm = () => {
             required
           />
         </div>
-
       </div>
-
       <div className="column">
         <div className="form-group">
-          <label>Imágenes adicionales:</label>
+          <label>Images:</label>
           {images.map((image, index) => (
             <div key={index} className="image-input-group">
               <input
@@ -215,12 +211,16 @@ const ProductForm = () => {
               />
             </div>
           ))}
-          <button type="button" onClick={handleAddImage} className="add-image-btn">
-            Agregar otra imagen
+          <button
+            type="button"
+            onClick={handleAddImage}
+            className="add-image-btn"
+          >
+            Add Image
           </button>
         </div>
         <div className="form-group">
-          <label htmlFor="description">Descripción:</label>
+          <label htmlFor="description">Description:</label>
           <textarea
             id="description"
             value={description}
@@ -228,7 +228,6 @@ const ProductForm = () => {
             required
           />
         </div>
-
         <div className="form-group">
           <label htmlFor="stock">Stock:</label>
           <input
@@ -240,9 +239,10 @@ const ProductForm = () => {
           />
         </div>
       </div>
-      <button type="submit" className="submit-btn">Crear Producto</button>
+      <button type="submit" className="submit-btn">
+        Create Product
+      </button>
     </form>
-
   );
 };
 

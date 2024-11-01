@@ -1,6 +1,6 @@
-import 'react';
-import PropTypes from 'prop-types';
-import './Pagination.css';
+import "react";
+import PropTypes from "prop-types";
+import "./Pagination.css";
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const pages = [...Array(totalPages).keys()].map((num) => num + 1);
@@ -10,25 +10,33 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={currentPage === 1 ? 'pagination-button disabled' : 'pagination-button'}
+        className={
+          currentPage === 1 ? "pagination-button disabled" : "pagination-button"
+        }
       >
         Previous
       </button>
-
       {pages.map((page) => (
         <button
           key={page}
           onClick={() => onPageChange(page)}
-          className={page === currentPage ? 'pagination-button active' : 'pagination-button'}
+          className={
+            page === currentPage
+              ? "pagination-button active"
+              : "pagination-button"
+          }
         >
           {page}
         </button>
       ))}
-
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={currentPage === totalPages ? 'pagination-button disabled' : 'pagination-button'}
+        className={
+          currentPage === totalPages
+            ? "pagination-button disabled"
+            : "pagination-button"
+        }
       >
         Next
       </button>

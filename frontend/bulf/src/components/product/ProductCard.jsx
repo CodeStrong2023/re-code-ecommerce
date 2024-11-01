@@ -1,7 +1,7 @@
-import 'react';
-import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
-import './ProductCard.css';
+import "react";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+import "./ProductCard.css";
 
 const ProductCard = ({ product }) => {
   const navigate = useNavigate();
@@ -12,13 +12,17 @@ const ProductCard = ({ product }) => {
     try {
       navigate(`/item/${product.id}`);
     } catch (error) {
-      console.error('Error en la redirección:', error);
+      console.error("Error en la redirección:", error);
     }
   };
 
   return (
     <div className="product-card" onClick={handleClick}>
-      <img src={product.mainImage} alt={product.name} className="product-image" />
+      <img
+        src={product.mainImage}
+        alt={product.name}
+        className="product-image"
+      />
       <div className="product-details">
         <h3 className="product-title">{product.name}</h3>
         <p className="product-description">{product.description}</p>

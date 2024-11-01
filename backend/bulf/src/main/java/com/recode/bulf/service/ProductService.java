@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -84,9 +85,9 @@ public class ProductService {
     }
 
     public boolean isNotStockAvailable(List<ProductPurchase> productsPurchased) {
-        for(ProductPurchase productPurchase: productsPurchased){
+        for (ProductPurchase productPurchase : productsPurchased) {
             Product product = productRepository.findById(productPurchase.id()).get();
-            if(!product.isStockPresent(productPurchase.quantity())){
+            if (!product.isStockPresent(productPurchase.quantity())) {
                 return true;
             }
         }

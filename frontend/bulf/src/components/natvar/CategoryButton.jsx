@@ -1,20 +1,16 @@
-import { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { ProductFilterContext } from '../product/ProductFilterContext';
-import { useNavigate } from 'react-router-dom';
+import { useContext } from "react";
+import PropTypes from "prop-types";
+import { ProductFilterContext } from "../product/ProductFilterContext";
+import { useNavigate } from "react-router-dom";
 
 const CategoryButton = ({ category }) => {
   const navigate = useNavigate();
   const { handleCategorySelect } = useContext(ProductFilterContext);
   const handleClick = () => {
-    navigate('/home');
+    navigate("/home");
     handleCategorySelect(category.id);
   };
-  return (
-    <button onClick={handleClick}>
-      {category.name}
-    </button>
-  );
+  return <button onClick={handleClick}>{category.name}</button>;
 };
 
 CategoryButton.propTypes = {

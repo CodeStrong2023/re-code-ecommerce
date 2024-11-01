@@ -1,0 +1,22 @@
+.purchase {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 35px;
+}
+
+.purchase h1 {
+  font-size: 60px;
+}
+.purchase h2 {
+  font-size: 100px;
+}
+.success {
+  background-color: rgb(59, 234, 85);
+}
+.failed {
+  background-color: rgb(175, 53, 53);
+}

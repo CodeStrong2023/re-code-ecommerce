@@ -18,6 +18,7 @@ public final class HttpConnection {
             .newBuilder()
             .connectTimeout(Duration.ofSeconds(10))
             .build();
+
     public static Optional<HttpResponse<String>> get(String uri, Map<String, List<String>> headers) {
         HttpRequest request = buildRequest(uri, headers, "GET", null);
         return sendRequest(request);

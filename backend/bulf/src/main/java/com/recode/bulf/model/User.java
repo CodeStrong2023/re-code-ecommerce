@@ -38,5 +38,5 @@ public class User {
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private List<Purchase> purchases = new ArrayList<>();
-    
+
 }

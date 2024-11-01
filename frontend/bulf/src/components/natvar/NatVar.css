@@ -3,7 +3,7 @@
   margin: 0px;
   background: radial-gradient(circle at top left, #ffffff, #8740ba, #537fab);
   color: #333;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .natvar-header {
@@ -36,17 +36,20 @@
 }
 
 .genders-container {
+  height: 100%;
   display: flex;
   width: 60%;
 }
 
 .cien {
   width: 100%;
+  height: 100%;
+  padding: 12px;
 }
 
 .gender-button {
+  height: 100%;
   width: 100%;
-  padding: 12px;
   margin: 0px;
   position: relative;
   background-color: #8239a6;

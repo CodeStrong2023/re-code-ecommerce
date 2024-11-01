@@ -1,49 +1,49 @@
-import { useState } from 'react';
-import './Sing.css';
-import { getApiUrl } from '../../config';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import "./Sing.css";
+import { getApiUrl } from "../../config";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: ''
+    username: "",
+    email: "",
+    password: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: value,
     });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const registerUrl = getApiUrl('/auth/register');
+      const registerUrl = getApiUrl("/auth/register");
       const response = await fetch(registerUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json'
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
       if (!response.ok) {
         const errorMessage = await response.text();
         alert(errorMessage);
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
-      const contentType = response.headers.get('content-type');
+      const contentType = response.headers.get("content-type");
       let data;
-      if (contentType && contentType.includes('application/json')) {
+      if (contentType && contentType.includes("application/json")) {
         data = await response.json();
       } else {
         data = await response.text();
       }
       alert("Your account was successfully created", data);
-      navigate('/home');
+      navigate("/home");
     } catch (error) {
-      console.error('Login failed:', error.message);
+      console.error("Login failed:", error.message);
     }
   };
   return (

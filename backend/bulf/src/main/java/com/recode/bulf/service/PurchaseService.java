@@ -33,7 +33,7 @@ public class PurchaseService {
         return response(purchaseRepository.findAllPurchases());
     }
 
-    private List<PurchaseDTO> response(List<Purchase> purchases){
+    private List<PurchaseDTO> response(List<Purchase> purchases) {
         List<PurchaseDTO> response = new ArrayList<>();
         for (Purchase purchase : purchases) {
             List<ProductPurchaseDTO> productsResponse = new ArrayList<>();

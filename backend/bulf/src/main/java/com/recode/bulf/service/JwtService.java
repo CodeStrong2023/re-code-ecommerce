@@ -34,7 +34,18 @@ public class JwtService {
     }
 
     private String buildToken(final User user, final long expiration) {
-        return Jwts.builder().claims(Map.of("email", user.getEmail(), "username", user.getUsername(), "isAdmin", user.isAdmin())).subject(user.getEmail()).issuedAt(new Date(System.currentTimeMillis())).expiration(new Date(System.currentTimeMillis() + expiration)).signWith(getSignInKey()).compact();
+        return Jwts
+                .builder()
+                .claims(Map.of(
+                        "email", user.getEmail(),
+                        "username", user.getUsername(),
+                        "isAdmin", user.isAdmin()
+                ))
+                .subject(user.getEmail())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + expiration))
+                .signWith(getSignInKey())
+                .compact();
     }
 
     public boolean isTokenValid(String token, String userEmail) {
@@ -47,7 +58,13 @@ public class JwtService {
     }
 
     private Date extractExpiration(String token) {
-        return Jwts.parser().verifyWith(getSignInKey()).build().parseSignedClaims(token).getPayload().getExpiration();
+        return Jwts
+                .parser()
+                .verifyWith(getSignInKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getExpiration();
     }
 
     private SecretKey getSignInKey() {

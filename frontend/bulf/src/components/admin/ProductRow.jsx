@@ -1,28 +1,37 @@
-import { useState } from 'react';
-import PropTypes from 'prop-types';
-import Modal from 'react-modal';
-import EditProductForm from './EditProductForm';
-import './ProductRow.css';
+import { useState } from "react";
+import PropTypes from "prop-types";
+import Modal from "react-modal";
+import EditProductForm from "./EditProductForm";
+import "./ProductRow.css";
 
-const ProductRow = ({ product, onDelete, genderMap, categoryMap, subcategoryMap }) => {
+const ProductRow = ({
+  product,
+  onDelete,
+  genderMap,
+  categoryMap,
+  subcategoryMap,
+}) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState(null);
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        const response = await fetch(`http://localhost:8080/api/auth/admin/product/${id}`, {
-          method: 'DELETE',
-        });
+        const response = await fetch(
+          `http://localhost:8080/api/auth/admin/product/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
         if (response.ok) {
-          alert('Producto eliminado exitosamente');
+          alert("Producto eliminado exitosamente");
           onDelete(id);
         } else {
-          alert('Error al eliminar el producto');
+          alert("Error al eliminar el producto");
         }
       } catch (error) {
-        console.error('Error en la solicitud de eliminación:', error);
-        alert('Error en la solicitud de eliminación');
+        console.error("Error en la solicitud de eliminación:", error);
+        alert("Error en la solicitud de eliminación");
       }
     }
   };
@@ -47,7 +56,9 @@ const ProductRow = ({ product, onDelete, genderMap, categoryMap, subcategoryMap 
         <td>{product.images.length}</td>
         <td title={product.mainImage} className="main-image-cell">
           <a href={product.mainImage}>
-            {product.mainImage.length > 30 ? product.mainImage.slice(0, 30) + '...' : product.mainImage}
+            {product.mainImage.length > 30
+              ? product.mainImage.slice(0, 30) + "..."
+              : product.mainImage}
           </a>
         </td>
         <td>{genderMap[product.genderId]}</td>
@@ -55,10 +66,14 @@ const ProductRow = ({ product, onDelete, genderMap, categoryMap, subcategoryMap 
         <td>{subcategoryMap[product.subcategoryId]}</td>
         <td className="button-cell">
           <button onClick={() => handleEdit(product)}>+/-</button>
-          <button className="delete-button" onClick={() => handleDelete(product.id)}>X</button>
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(product.id)}
+          >
+            X
+          </button>
         </td>
       </tr>
-
       <Modal
         isOpen={isEditModalOpen}
         onRequestClose={closeEditModal}
@@ -66,12 +81,11 @@ const ProductRow = ({ product, onDelete, genderMap, categoryMap, subcategoryMap 
         className="modal"
         overlayClassName="modal-overlay"
       >
-        <button onClick={closeEditModal} className="close-modal">X</button>
+        <button onClick={closeEditModal} className="close-modal">
+          X
+        </button>
         {productToEdit && (
-          <EditProductForm
-            product={productToEdit}
-            onClose={closeEditModal}
-          />
+          <EditProductForm product={productToEdit} onClose={closeEditModal} />
         )}
       </Modal>
     </>
@@ -90,7 +104,6 @@ ProductRow.propTypes = {
     categoryId: PropTypes.number.isRequired,
     subcategoryId: PropTypes.number.isRequired,
   }).isRequired,
-  onEdit: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   genderMap: PropTypes.object.isRequired,
   categoryMap: PropTypes.object.isRequired,

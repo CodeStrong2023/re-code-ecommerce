@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import './Sing.css';
-import { getApiUrl } from '../../config';
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { useUser } from '../user/UserContext'
+import { useState } from "react";
+import "./Sing.css";
+import { getApiUrl } from "../../config";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { useUser } from "../user/UserContext";
 
 const LoginForm = ({ closeModal }) => {
   const { login } = useUser();
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const navigate = useNavigate();
@@ -24,11 +24,11 @@ const LoginForm = ({ closeModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const loginUrl = getApiUrl('/auth/login');
+      const loginUrl = getApiUrl("/auth/login");
       const response = await fetch(loginUrl, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -36,18 +36,18 @@ const LoginForm = ({ closeModal }) => {
       if (!response.ok) {
         const errorMessage = await response.text();
         alert(errorMessage);
-        throw new Error('Login failed');
+        throw new Error("Login failed");
       }
-      const data = await response.json()
+      const data = await response.json();
       login(data.access_token);
     } catch (error) {
-      console.error('Login failed:', error.message);
+      console.error("Login failed:", error.message);
     }
     closeModal();
   };
 
   const handleSignUpClick = () => {
-    navigate('/signup');
+    navigate("/signup");
     closeModal();
   };
   return (
@@ -79,7 +79,11 @@ const LoginForm = ({ closeModal }) => {
       <br />
       <br />
       <p>Do not have an account?</p>
-      <button type="button" onClick={handleSignUpClick} className="signup-button">
+      <button
+        type="button"
+        onClick={handleSignUpClick}
+        className="signup-button"
+      >
         Signup
       </button>
     </form>

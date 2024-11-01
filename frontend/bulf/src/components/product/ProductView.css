@@ -23,9 +23,11 @@
 
 .thumbnail-carousel {
   margin: 0px 200px;
-  display: flex;
   gap: 10px;
   overflow-x: auto;
+  img {
+    margin: 0px 10px;
+  }
 }
 
 .thumbnail {
@@ -35,14 +37,6 @@
   cursor: pointer;
   border: 2px solid transparent;
   transition: border 0.3s ease;
-}
-
-.thumbnail:hover {
-  border: 2px solid #999;
-}
-
-.thumbnail.active {
-  border: 2px solid #e53935;
 }
 
 .details-section {
@@ -72,16 +66,6 @@
 .current-price {
   font-size: 32px;
   color: #e53935;
-}
-
-.old-price {
-  text-decoration: line-through;
-  color: #999;
-}
-
-.discount {
-  color: #388e3c;
-  font-weight: bold;
 }
 
 .additional-details {

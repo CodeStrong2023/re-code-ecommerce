@@ -31,7 +31,7 @@ public class Purchase {
     private String preferenceId;
 
     @ManyToOne()
-    @JoinColumn(name = "user_id", nullable = false,referencedColumnName = "id")
+    @JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
     private User user;
 
     @ManyToMany
