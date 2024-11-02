@@ -18,30 +18,32 @@
     </ul>
     <h2>checks:</h2>
     <ul>
-        <li><strong>Java</strong>:  
-            <code>java -version</code> return: 
-            <blockquote><code>java version "21.0.4" 2024-07-16 LTS</code></blockquote>
+        <li><strong>Java:</strong><br>
+            <code>java -version</code><br>
+            return: 
+            <blockquote>java version "21.0.4" 2024-07-16 LTS</blockquote>
         </li>
-        <li><strong>Maven</strong>:  
-            <code>mvn -version</code> returns maybe: 
+        <li><strong>Maven:</strong><br> 
+            <code>mvn -version</code><br>
+            returns maybe: 
             <blockquote>
-                <code>Apache Maven 3.9.0 (9b58d2bad23a66be161c4664ef21ce219c2c8584)</code><br>
-                <code>Maven home: path\maven</code><br>
-                <code>Java version: 21.0.4, vendor: Oracle Corporation, runtime: path\jdk-21</code><br>
-                <code>Default locale: es_AR, platform encoding: UTF-8</code>
+                Apache Maven 3.9.0 (hash)<br>
+                Maven home: path\maven<br>
+                Java version: 21.0.4, vendor: Oracle Corporation, runtime: path\jdk-21<br>
+                Default locale: es_AR, platform encoding: UTF-8
             </blockquote>
         </li>
     </ul>
     <h2>exceute</h2>
     <ol>
-        <li>move to: 
+        <li>move to:<br>
             <code>cd backend/bulf</code>
         </li>
-        <li>execute:
+        <li>execute:<br>
             <code>mvn clean</code><br>
             <code>mvn install</code>
         </li>
-        <li>start:
+        <li>start:<br>
             <code>mvn spring-boot:run</code>
         </li>
     </ol>
