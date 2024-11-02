@@ -25,10 +25,10 @@
         <li><strong>Maven</strong>:  
             <code>mvn -version</code> returns maybe: 
             <blockquote>
-                <code>Apache Maven 3.9.0 (9b58d2bad23a66be161c4664ef21ce219c2c8584)<br>
-                Maven home: path\maven<br>
-                Java version: 21.0.4, vendor: Oracle Corporation, runtime: path\jdk-21<br>
-                Default locale: es_AR, platform encoding: UTF-8</code>
+                <code>Apache Maven 3.9.0 (9b58d2bad23a66be161c4664ef21ce219c2c8584)</code><br>
+                <code>Maven home: path\maven</code><br>
+                <code>Java version: 21.0.4, vendor: Oracle Corporation, runtime: path\jdk-21</code><br>
+                <code>Default locale: es_AR, platform encoding: UTF-8</code>
             </blockquote>
         </li>
     </ul>
@@ -38,7 +38,7 @@
             <code>cd backend/bulf</code>
         </li>
         <li>execute:
-            <code>mvn clean</code>
+            <code>mvn clean</code><br>
             <code>mvn install</code>
         </li>
         <li>start:
