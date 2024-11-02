@@ -1,14 +1,14 @@
 .product-view {
-  padding: 20px;
+  padding: 0px;
 }
 
 .product-container {
   display: flex;
   gap: 30px;
-}
+} 
 
 .image-section {
-  margin: 40px;
+  margin: 10px;
   flex: 2;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
 
 .main-image {
   width: auto;
-  height: 450px;
+  height: 400px;
   margin-bottom: 20px;
   border: 2px solid #ccc;
 }
@@ -40,7 +40,7 @@
 }
 
 .details-section {
-  margin: 40px;
+  margin: 0px 40px;
   flex: 1;
   flex-direction: column;
   text-align: start;
@@ -51,7 +51,6 @@
 .product-name {
   font-size: 24px;
   justify-self: start;
-  margin-bottom: 10px;
   color: black;
 
 }

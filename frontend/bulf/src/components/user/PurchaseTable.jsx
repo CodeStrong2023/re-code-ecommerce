@@ -32,14 +32,14 @@ function PurchaseTable() {
   }, [token, user]);
   return (
     <div className="purchase-container">
-      <h2>Lista de Compras</h2>
+      <h2>Shopping List</h2>
       <table className="purchase-table">
         <thead>
           <tr>
-            <th>ID de Pago</th>
+            <th>ID Purchase</th>
             <th>Status</th>
-            <th>Productos</th>
-            <th>Costo Total</th>
+            <th>Products</th>
+            <th>Total Cost</th>
           </tr>
         </thead>
         <tbody>

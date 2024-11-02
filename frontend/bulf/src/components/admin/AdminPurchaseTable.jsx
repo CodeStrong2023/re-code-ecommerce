@@ -27,17 +27,17 @@ function AdminPurchaseTable() {
   }, [token]);
   return (
     <div className="purchase-container2">
-      <h2 className="title">Lista de Compras Administrativas</h2>
+      <h2 className="title">Administrative Purchase List</h2>
       <table className="purchase-table">
         <thead>
           <tr>
-            <th>ID de Pago</th>
+            <th>Purchase ID</th>
             <th>Status</th>
-            <th>Usuario ID</th>
-            <th>Email del Usuario</th>
-            <th>Nombre del Usuario</th>
-            <th>Productos</th>
-            <th>Costo Total</th>
+            <th>User ID</th>
+            <th>User Email</th>
+            <th>Username</th>
+            <th>Products</th>
+            <th>Total Cost</th>
           </tr>
         </thead>
         <tbody>

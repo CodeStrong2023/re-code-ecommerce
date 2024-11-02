@@ -184,7 +184,6 @@ const ProductView = () => {
             <p>
               <b>Details:</b>
             </p>
-            <br />
             <p>{product.description}</p>
           </div>
           <div className="price-section">
@@ -209,15 +208,10 @@ const ProductView = () => {
             <p>
               <strong>Sub-category:</strong> {subcategoryName}
             </p>
-            <br />
           </div>
           <div className="additional-details">
-            <p className="shipping-info">Envío: ARS 9,938.09</p>
-            <p className="delivery-info">Entrega estimada: {deliveryDate}</p>
-            <p className="security-info">
-              Seguridad y Privacidad: Pagos seguros, sin compartir datos con
-              terceros.
-            </p>
+            <p className="shipping-info">Shipment: ARS 9,938.09</p>
+            <p className="delivery-info">Estimated delivery: {deliveryDate}</p>
           </div>
           <p>
             <strong>Stock:</strong> {product.stock}
