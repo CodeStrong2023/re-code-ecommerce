@@ -12,11 +12,19 @@
         <li><strong>Java 21</strong>: <a href="https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html">download for windows</a></li>
         <li><strong>Maven</strong>: <a href="https://maven.apache.org/download.cgi">download for windows</a></li>
         <li><strong>Node.js v21.7.3 </strong>: <a href="https://nodejs.org/en/download/package-manager">download for windows</a></li>
+        <li><strong>PostgreSQL </strong>: <a href="https://www.postgresql.org/download/">download for windows</a></li>
     </ul>
-    <h2>Config environment variable for windows :</h2>
+    <h2>Config:</h2>
     <ul>
         <li><strong>variable</strong>: <code>JAVA_HOME</code></li>
         <li><strong>Value</strong>: path to jdk-21 (example: <code>path\jdk-21</code>)</li>
+        <li><strong>backend/bulf/src/main/resources/application.properties</strong></li>
+         <blockquote>
+                spring.datasource.url=jdbc:postgresql://localhost:5432/#you database name<br>
+                spring.datasource.username=#you server name<br>
+                spring.datasource.password=#you server password<br>
+                spring.jpa.hibernate.ddl-auto=# first ejecution create-drop after update
+            </blockquote>
     </ul>
     <h2>checks:</h2>
     <ul>
@@ -46,7 +54,7 @@
         <li>move to:<br>
             <code>cd backend/bulf</code>
         </li>
-        <li>execute:<br>
+        <li>get ready:<br>
             <code>mvn clean</code><br>
             <code>mvn install</code>
         </li>
@@ -59,7 +67,7 @@
         <li>move to:<br>
             <code>cd frontend/bulf</code>
         </li>
-        <li>execute:<br>
+        <li>get ready:<br>
             <code>npm install</code>
         </li>
         <li>start:<br>
