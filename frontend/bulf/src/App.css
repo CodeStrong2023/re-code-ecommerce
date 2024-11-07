@@ -6,7 +6,7 @@
 }
 
 body {
-    background: radial-gradient(circle at top left, #c3c3d6, #537fab, #8740ba);
+    
     color: #1a1717;
   }
 
@@ -16,7 +16,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 120px;
+    background: radial-gradient(circle at top left, #c3c3d6, #537fab, #8740ba);
 }
 
 a {

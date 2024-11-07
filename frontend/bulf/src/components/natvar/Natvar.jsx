@@ -61,50 +61,53 @@ function NatVar() {
   };
 
   return (
-    <div className="natvar">
-      <div className="natvar-header">
-        <img src={logo} alt="Logo de la tienda" className="logo" />
-        <button className="home-button" onClick={handleHomeClick}>
-          Home
-        </button>
-        <div className="genders-container">
-          {genders.map((gender) => (
-            <GenderButton key={gender.id} gender={gender} />
-          ))}
+    <div>
+      <div className="margintop"></div>
+      <div className="natvar">
+        <div className="natvar-header">
+          <img src={logo} alt="Logo de la tienda" className="logo" />
+          <button className="home-button" onClick={handleHomeClick}>
+            Home
+          </button>
+          <div className="genders-container">
+            {genders.map((gender) => (
+              <GenderButton key={gender.id} gender={gender} />
+            ))}
+          </div>
+          <button
+            className="home-button"
+            onClick={() => window.open("https://github.com/ivorossi", "_blank")}
+          >
+            Feature
+          </button>
+
+          {user && user.isAdmin && (
+            <button className="home-button" onClick={handleAdminClick}>
+              Admin
+            </button>
+          )}
+          {user ? (
+            <ProfileButton className="home-button" />
+          ) : (
+            <button className="home-button" onClick={toggleLoginModal}>
+              Sing In
+            </button>
+          )}
         </div>
-        <button
-          className="home-button"
-          onClick={() => window.open("https://github.com/ivorossi", "_blank")}
+
+        <Modal
+          isOpen={isLoginOpen}
+          onRequestClose={toggleLoginModal}
+          contentLabel="Login Modal"
+          className="modal"
+          overlayClassName="modal-overlay"
         >
-          Feature
-        </button>
-
-        {user && user.isAdmin && (
-          <button className="home-button" onClick={handleAdminClick}>
-            Admin
+          <button onClick={toggleLoginModal} className="close-modal">
+            X
           </button>
-        )}
-        {user ? (
-          <ProfileButton className="home-button" />
-        ) : (
-          <button className="home-button" onClick={toggleLoginModal}>
-            Sing In
-          </button>
-        )}
+          <LoginForm closeModal={closeModal} />
+        </Modal>
       </div>
-
-      <Modal
-        isOpen={isLoginOpen}
-        onRequestClose={toggleLoginModal}
-        contentLabel="Login Modal"
-        className="modal"
-        overlayClassName="modal-overlay"
-      >
-        <button onClick={toggleLoginModal} className="close-modal">
-          X
-        </button>
-        <LoginForm closeModal={closeModal} />
-      </Modal>
     </div>
   );
 }

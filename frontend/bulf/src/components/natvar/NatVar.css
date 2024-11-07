@@ -11,12 +11,15 @@
   z-index: 100;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.margintop{
+  margin-top: 120px;
+}
 .natvar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0px;
+  
 }
 
 .logo {
