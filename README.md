@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <h1># re-code-ecommerce</h1>
+    <h1># Grupo: re-code  --ecommerce--</h1>
+    <h2>Integrantes: Ivo Rossi Legajo: 9872</h2>
     <h2>Requirements:</h2>
     <ul>
         <li><code>git clone https://github.com/CodeStrong2023/re-code-ecommerce.git</code></li>
