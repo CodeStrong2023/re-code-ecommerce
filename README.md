@@ -7,7 +7,7 @@
 <body>
     <h1># Grupo: re-code  --ecommerce--</h1>
     <h2>Integrantes:</h2><br>
-        <strong>Ivo Rossi Legajo: 9872</strong>
+        <strong>Ivo Martin Rossi, Legajo: 9872</strong>
     <h2>Requirements:</h2>
     <ul>
         <li><code>git clone https://github.com/CodeStrong2023/re-code-ecommerce.git</code></li>
