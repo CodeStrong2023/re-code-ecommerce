@@ -76,5 +76,9 @@
             <code>npm run dev</code>
         </li>
     </ol>
+    <h2>Brief:</h2>
+    <a href="https://docs.google.com/document/d/e/2PACX-1vQrRlDBofqfYkT_ZsxiCPutTDBzEQT7HnRDExRleQtavzUcO5ouo8UyCIc2JRkG4FyaSAVWOM0MmYWz/pub">link to document</a>
+    <h2>video:</h2>
+    <a href="https://drive.google.com/file/d/1b7cxv6nltbx-Uozdz_upwwXRD5JnZAV3/view?usp=drive_link">link to file</a>
 </body>
 </html>
